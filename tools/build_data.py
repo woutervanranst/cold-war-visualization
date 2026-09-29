@@ -258,6 +258,25 @@ def build(ctx):
     by_term = index_chapters(ctx)
     errs, warns = [], []
 
+    # hand corrections from the fact-check pass
+    by_id = {e["id"]: e for e in events}
+    for eid, fx in tl.get("eventFixes", {}).items():
+        e = by_id.get(eid)
+        if e is None:
+            errs.append(f"eventFixes: unknown event {eid}")
+            continue
+        if fx.get("delete"):
+            events.remove(e)
+            continue
+        drop = fx.get("dropRefs", [])
+        e["refs"] = [r for r in e["refs"] if r not in drop]
+        e.update({k: v for k, v in fx.items() if k not in ("dropRefs", "delete")})
+        if "note" in fx:
+            check_note(f"eventFixes {eid}", fx["note"], errs)
+        bad = [c for c in e["countries"] if c not in ctx.countries] + [l for l in e["leaders"] if l not in ctx.leaders]
+        if bad:
+            errs.append(f"eventFixes {eid}: unknown participants {bad}")
+
     def ev_chapters(eid_key, ent_id):
         return {r["ch"] for e in events if ent_id in e[eid_key] for r in e["refs"]}
 

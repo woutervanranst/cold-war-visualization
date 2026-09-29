@@ -129,7 +129,7 @@
     {
      "from": "1951-03",
      "band": "nonaligned",
-     "note": "Árbenz's elected reformist government, tolerated by local Communists, pursues land reform against US company interests.",
+     "note": "Árbenz's elected reformist government, backed by the tiny Guatemalan Communist Party, pursues land reform against US company interests.",
      "ref": {
       "ch": 13,
       "p": 345
@@ -822,7 +822,7 @@
     {
      "from": "1950-01",
      "band": "east",
-     "note": "As the Korean War rages, Chinese Communist aid to the Viet Minh becomes plain.",
+     "note": "Ho's Viet Minh joins the Communist camp; once war breaks out in Korea, Chinese Communist aid to it becomes plain.",
      "ref": {
       "ch": 5,
       "p": 150
@@ -867,11 +867,7 @@
     {
      "from": "1953-11",
      "band": "nonaligned",
-     "note": "Independent under its king, Sihanouk, who tries to keep the country out of the Indochina wars.",
-     "ref": {
-      "ch": 15,
-      "p": 406
-     }
+     "note": "Independent under its king, Sihanouk, who tries to keep the country out of the Indochina wars (general knowledge; not detailed in the book)."
     },
     {
      "from": "1970-03",
@@ -1439,10 +1435,10 @@
    "dateSource": "general"
   },
   "reagan": {
-   "role": "US president",
+   "role": "US president (Republican nominee from 1980)",
    "terms": [
     [
-     "1981-01",
+     "1980-07",
      "1989-01"
     ]
    ],
@@ -1492,7 +1488,7 @@
    "role": "Soviet party leader",
    "terms": [
     [
-     "1953-09",
+     "1953-03",
      "1964-10"
     ]
    ],
@@ -1607,10 +1603,10 @@
    "dateSource": "general"
   },
   "brandt": {
-   "role": "West German foreign minister, then chancellor",
+   "role": "Mayor of West Berlin, then West German foreign minister and chancellor",
    "terms": [
     [
-     "1966-12",
+     "1957-10",
      "1974-05"
     ]
    ],
@@ -1804,7 +1800,7 @@
    "role": "Cuban revolutionary leader",
    "terms": [
     [
-     "1959-01",
+     "1956-12",
      "2008-02"
     ]
    ],
@@ -1927,6 +1923,49 @@
  },
  "eventAliases": {
   "lin-biao-incident-1971": "lin-biao-affair-1971",
-  "helsinki-final-act-1975": "helsinki-accords-1975"
+  "helsinki-final-act-1975": "helsinki-accords-1975",
+  "soviet-collapse-1991": "dissolution-of-soviet-union-1991"
+ },
+ "eventFixes": {
+  "dissolution-of-soviet-union-1991": {
+   "title": "Gorbachev resigns; USSR dissolves",
+   "leaders": [
+    "gorbachev",
+    "bush41",
+    "yeltsin"
+   ],
+   "note": "Refusing to hold the union by force, Gorbachev phones Bush and resigns on Christmas Day; nuclear command passes to Yeltsin and the Cold War system is gone."
+  },
+  "fall-of-berlin-wall-1989": {
+   "note": "After Schabowski's garbled 9 November press conference, crowds surge to the crossings and overwhelmed guards open them; Westad sees this unplanned opening as 1989's decisive breakthrough."
+  },
+  "elbe-day-1945": {
+   "leaders": [],
+   "refs": [
+    {
+     "ch": 2,
+     "p": 58
+    }
+   ]
+  },
+  "soviet-collectivization-1929": {
+   "note": "Stalin's war on the kulaks forces land into state hands; his regime kills at least ten million people by 1953, and at least three million more die in the Ukrainian famine."
+  },
+  "cuban-missile-crisis-1962": {
+   "dropRefs": [
+    {
+     "ch": 16,
+     "p": 434
+    }
+   ]
+  },
+  "invasion-of-czechoslovakia-1968": {
+   "leaders": [
+    "brezhnev",
+    "dubcek",
+    "indira",
+    "lbj"
+   ]
+  }
  }
 }
