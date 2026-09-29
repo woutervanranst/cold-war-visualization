@@ -3,7 +3,7 @@
 An interactive, xkcd-style [narrative chart](https://xkcd.com/657/) of Odd Arne Westad's
 *The Cold War: A World History* (Basic Books, 2017).
 
-**Live:** https://woutervanranst.github.io/cold-war-visualization/
+**Live:** https://wouteronarchitecture.com/cold-war-visualization/
 
 - **Countries** view: each line is a country; the pale bands are the camps it belonged to
   (the West, the Soviet camp, the non-aligned world, colonies, Communists on their own, the Axis).
