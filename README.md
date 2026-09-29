@@ -10,12 +10,15 @@ An interactive, xkcd-style [narrative chart](https://xkcd.com/657/) of Odd Arne 
   Lines cross between bands when a country changes sides.
 - **Leaders** view: each line is a leader, running inside their country's band while in power;
   lines pinch together where leaders met or clashed (Yalta, Bandung, Nixon in Beijing, …).
+- **Main cast / Full cast**: the main cast is the 20 countries and 22 leaders the book leans on
+  most (index references plus the events they take part in, major events counting triple); the
+  full cast adds everyone else. Anyone you search for is added back in.
 - Hover for details (every note cites chapter and page), click a line to pin it, scroll or pinch to
   zoom, pick a chapter to see what it covers, search for a name, or open the list of events.
 - Time before 1945 and after 1991 is squeezed so the Cold War itself gets most of the width.
 
 The whole page is one hand-written `index.html` (D3 from a CDN, no build step) reading
-`data/coldwar.json`. Add `?view=leaders` to a link to open the Leaders view.
+`data/coldwar.json`. Add `?view=leaders` and/or `?cast=main` to a link to open it that way.
 
 ## How the data was made
 

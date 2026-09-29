@@ -168,6 +168,10 @@ footer a { color: inherit; }
       <button role="radio" data-view="countries" aria-checked="true">Countries</button>
       <button role="radio" data-view="leaders" aria-checked="false">Leaders</button>
     </div>
+    <div class="seg" role="radiogroup" aria-label="Who is shown">
+      <button role="radio" data-cast="main" aria-checked="false" title="Only the countries and leaders the book leans on most">Main cast</button>
+      <button role="radio" data-cast="full" aria-checked="true" title="Everyone in the chart">Full cast</button>
+    </div>
     <select id="lens" aria-label="Chapter lens"><option value="">All chapters</option></select>
     <div class="search">
       <input id="q" type="search" placeholder="find… Castro, Angola, Yalta" autocomplete="off" aria-label="Find a country, leader or event" aria-controls="suggest" aria-expanded="false">
@@ -565,12 +569,16 @@ function layout(view, only, seedOrder) {
 /* ======================================================================== state */
 const state = {
   view: "countries", t: d3.zoomIdentity, L: null, pinned: new Set(), hover: null, hoverEvent: null,
-  lens: null, selected: [], only: false, focusEvent: null,
+  lens: null, selected: [], only: false, focusEvent: null, cast: "full",
 };
 const layoutCache = new Map();
 function currentLayout() {
+  // "only these" wins; otherwise the main cast, plus anyone picked in search
   const ids = state.only ? selectedLineIds() : [];
-  const only = ids.length ? new Set(ids) : null;
+  const cast = state.cast === "main"
+    ? [...(state.view === "countries" ? DATA.countries : DATA.leaders).filter(x => x.main).map(x => x.id), ...selectedLineIds()]
+    : null;
+  const only = ids.length ? new Set(ids) : cast ? new Set(cast) : null;
   const key = state.view + "|" + (only ? [...only].sort().join(",") : "*");
   if (!layoutCache.has(key)) {
     const full = only ? currentFull() : null;
@@ -1127,10 +1135,11 @@ function resetZoom() {
 document.getElementById("reset").onclick = resetZoom;
 
 // view toggle
-document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setView(b.dataset.view)));
+document.querySelectorAll(".seg button[data-view]").forEach(b => b.addEventListener("click", () => setView(b.dataset.view)));
+document.querySelectorAll(".seg button[data-cast]").forEach(b => b.addEventListener("click", () => setCast(b.dataset.cast)));
 function setView(v, animate = true) {
   if (v === state.view) return;
-  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
+  document.querySelectorAll(".seg button[data-view]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
   const swap = () => {
     state.view = v; state.pinned.clear(); state.hover = null;
     state.L = currentLayout();
@@ -1140,6 +1149,19 @@ function setView(v, animate = true) {
   if (!animate) return swap();
   root.style("opacity", 0);
   setTimeout(swap, 200);
+}
+
+// main cast / full cast
+function setCast(c) {
+  if (c === state.cast) return;
+  document.querySelectorAll(".seg button[data-cast]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.cast === c)));
+  root.style("opacity", 0);
+  setTimeout(() => {
+    state.cast = c; state.hover = null;
+    state.L = currentLayout();
+    render(true); renderList();
+    root.style("opacity", 1);
+  }, 200);
 }
 
 // chapter lens
@@ -1219,6 +1241,11 @@ function renderList() {
   let evs = DATA.events;
   const narrowed = state.lens != null || state.selected.length || state.pinned.size || state.focusEvent;
   if (narrowed) evs = evs.filter(e => F.events.has(e.id) || (state.view === "countries" ? e.countries : e.leaders).some(id => F.lines.has(id)));
+  if (state.L.lines.length < (state.view === "countries" ? DATA.countries : DATA.leaders).length) {
+    const onScreen = new Set(state.L.lines.map(l => l.id));
+    if (state.view === "leaders") state.L.lines.forEach(l => onScreen.add(l.ent.country));
+    evs = evs.filter(e => [...e.countries, ...e.leaders].some(id => onScreen.has(id)));
+  }
   document.getElementById("dcount").textContent = `${evs.length} of ${DATA.events.length}`;
   document.getElementById("elist").replaceChildren(...evs.map(e => el("li", {}, el("button", { onclick: () => {
     state.focusEvent = e; if (e.t >= D0 && e.t <= D1) zoomTo(e.t - 2.5, e.t + 2.5); schedule(true);
@@ -1252,8 +1279,12 @@ async function boot() {
   svg.call(zoom).on("dblclick.zoom", null);
   resize();
   const v = new URLSearchParams(location.search).get("view");
-  if (v === "leaders") document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
+  if (v === "leaders") document.querySelectorAll(".seg button[data-view]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
   if (v === "leaders") state.view = v;
+  if (new URLSearchParams(location.search).get("cast") === "main") {
+    state.cast = "main";
+    document.querySelectorAll(".seg button[data-cast]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.cast === "main")));
+  }
   state.L = currentLayout();
   new ResizeObserver(() => { resize(); schedule(true); }).observe(document.getElementById("chart"));
   if (baseW > plotW()) svg.call(zoom.transform, d3.zoomIdentity.translate(-baseX(1938), 0));

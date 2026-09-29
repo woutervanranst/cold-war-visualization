@@ -20,6 +20,7 @@ KINDS = {"summit", "war", "crisis", "treaty", "revolution", "split", "independen
 DATE_RE = re.compile(r"^\d{4}(-(0[1-9]|1[0-2]))?$")
 NOTE_MAX_WORDS = 35
 NGRAM = 8
+MAIN_CAST = {"countries": 20, "leaders": 22}   # how many of each make the "main cast"
 
 
 def load(path):
@@ -245,6 +246,28 @@ def index_chapters(ctx):
     return by_term
 
 
+def index_counts():
+    counts = {}
+    for e in load(WORK / "index.json"):
+        counts[e["term"]] = counts.get(e["term"], 0) + len(e["refs"])
+    return counts
+
+
+def mark_main_cast(roster, countries, leaders, events):
+    """Flag the entities the book leans on most: index references plus events
+    they take part in (rank 1 counts 3, rank 2 counts 2, rank 3 counts 1)."""
+    refs = index_counts()
+    terms = {c["id"]: c.get("terms", []) for c in roster["countries"]}
+    terms.update({l["id"]: [l["term"]] for l in roster["leaders"]})
+    for key, items in (("countries", countries), ("leaders", leaders)):
+        score = {x["id"]: sum(refs.get(t, 0) for t in terms[x["id"]])
+                 + sum(4 - e["rank"] for e in events if x["id"] in e[key]) for x in items}
+        top = sorted(items, key=lambda x: -score[x["id"]])[:MAIN_CAST[key]]
+        for x in top:
+            x["main"] = True
+        print(f"main cast {key}: " + ", ".join(x["id"] for x in top))
+
+
 def build(ctx):
     exts = load_extracts(ctx)
     tl_path = ROOT / "tools" / "timelines.json"
@@ -354,6 +377,7 @@ def build(ctx):
         if travel(o) < score:
             better.append(f"swap {o[i + 1]}<->{o[i]}: {travel(o)} < {score}")
 
+    mark_main_cast(roster, countries, leaders, events)
     chapters = []
     for c in sorted(ctx.chapters.values(), key=lambda c: c["n"]):
         ts = sorted(month_key(e["date"])[0] / 12 for e in events if any(r["ch"] == c["n"] for r in e["refs"]))
