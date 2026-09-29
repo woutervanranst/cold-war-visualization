@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cold War Narrative Chart</title>
+<meta name="description" content="An xkcd-style narrative chart of Odd Arne Westad's The Cold War: A World History: which camp each country stood in, and which leaders met whom, 1890s to 2010s.">
+<style>
+@font-face { font-family: "xkcd Script"; src: url(fonts/xkcd-script.woff) format("woff"); font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --paper: #ffffff; --ink: #111111; --ink-2: #4f4e4a; --muted: #8a8780; --rule: #d9d7cf; --halo: #ffffff;
+  --r-americas: #2a78d6; --r-w-europe: #008300; --r-e-europe: #e34948; --r-e-asia: #4a3aa7;
+  --r-s-asia: #eb6834; --r-mideast: #1baf7a; --r-africa: #eda100;
+  --b-west: #e7effb; --b-axis: #ece8e1; --b-colonized: #f6efd9; --b-nonaligned: #e5f2e6;
+  --b-indep-communist: #fbe9d8; --b-east: #fbe3e2; --b-edge: rgba(0,0,0,.16);
+  --lens: rgba(237,161,0,.13); --squeeze: rgba(0,0,0,.035); --panel: #fbfaf7; --shadow: rgba(0,0,0,.14);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #1b1b1d; --ink: #f1f0ea; --ink-2: #c3c2b7; --muted: #8f8d86; --rule: #3a3a37; --halo: #1b1b1d;
+    --r-americas: #3987e5; --r-w-europe: #008300; --r-e-europe: #e66767; --r-e-asia: #9085e9;
+    --r-s-asia: #d95926; --r-mideast: #199e70; --r-africa: #c98500;
+    --b-west: #1f2939; --b-axis: #2a2724; --b-colonized: #2d291c; --b-nonaligned: #1c2c1f;
+    --b-indep-communist: #32251b; --b-east: #392022; --b-edge: rgba(255,255,255,.14);
+    --lens: rgba(201,133,0,.16); --squeeze: rgba(255,255,255,.035); --panel: #232326; --shadow: rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #1b1b1d; --ink: #f1f0ea; --ink-2: #c3c2b7; --muted: #8f8d86; --rule: #3a3a37; --halo: #1b1b1d;
+  --r-americas: #3987e5; --r-w-europe: #008300; --r-e-europe: #e66767; --r-e-asia: #9085e9;
+  --r-s-asia: #d95926; --r-mideast: #199e70; --r-africa: #c98500;
+  --b-west: #1f2939; --b-axis: #2a2724; --b-colonized: #2d291c; --b-nonaligned: #1c2c1f;
+  --b-indep-communist: #32251b; --b-east: #392022; --b-edge: rgba(255,255,255,.14);
+  --lens: rgba(201,133,0,.16); --squeeze: rgba(255,255,255,.035); --panel: #232326; --shadow: rgba(0,0,0,.5);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; }
+body {
+  height: 100svh; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  font: 15px/1.3 "xkcd Script", "Comic Neue", "Comic Sans MS", system-ui, sans-serif;
+}
+button, input, select { font: inherit; color: inherit; }
+
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; padding: 10px 16px 4px; }
+h1 { margin: 0; font-size: 28px; font-weight: normal; letter-spacing: .02em; text-transform: uppercase; }
+.sub { margin: 0; color: var(--ink-2); font-size: 14px; }
+.titles { flex: 1 1 320px; min-width: 0; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.seg { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 6px 9px 7px 8px; overflow: hidden; }
+.seg button { border: 0; background: none; padding: 3px 10px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.btn, select, input[type="search"] {
+  border: 1.5px solid var(--ink); border-radius: 8px 6px 9px 7px; background: var(--paper); padding: 3px 9px; cursor: pointer;
+}
+input[type="search"] { cursor: text; width: 210px; max-width: 60vw; }
+select { max-width: 230px; }
+.search { position: relative; }
+#suggest {
+  position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; min-width: 260px; max-height: 50vh; overflow: auto;
+  margin: 0; padding: 4px; list-style: none; background: var(--panel); border: 1.5px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+#suggest li { padding: 4px 8px; border-radius: 5px; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+#suggest li[aria-selected="true"], #suggest li:hover { background: var(--rule); }
+#suggest .k { color: var(--muted); font-size: 13px; }
+#chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { border: 1.5px solid var(--ink); border-radius: 12px; padding: 0 4px 0 9px; display: inline-flex; align-items: center; gap: 2px; }
+.chip button { border: 0; background: none; cursor: pointer; padding: 0 4px; font-size: 16px; line-height: 1; }
+label.check { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+
+main { flex: 1; min-height: 0; position: relative; }
+#svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#svg:active { cursor: grabbing; }
+#svg > g { transition: opacity .2s; }
+
+.blob { stroke: var(--b-edge); stroke-width: 1.2; }
+.b-west { fill: var(--b-west); } .b-axis { fill: var(--b-axis); } .b-colonized { fill: var(--b-colonized); }
+.b-nonaligned { fill: var(--b-nonaligned); } .b-indep-communist { fill: var(--b-indep-communist); } .b-east { fill: var(--b-east); }
+.band-label { fill: var(--muted); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; pointer-events: none;
+  stroke: var(--halo); stroke-width: 3px; stroke-opacity: .75; paint-order: stroke; stroke-linejoin: round; }
+.line { fill: none; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; transition: opacity .15s; }
+.line.dim, .dot.dim, .meet.dim, .lbl.dim { opacity: .14; }
+.line.hi { stroke-width: 3.5; }
+.r-americas { stroke: var(--r-americas); --c: var(--r-americas); } .r-w-europe { stroke: var(--r-w-europe); --c: var(--r-w-europe); }
+.r-e-europe { stroke: var(--r-e-europe); --c: var(--r-e-europe); } .r-e-asia { stroke: var(--r-e-asia); --c: var(--r-e-asia); }
+.r-s-asia { stroke: var(--r-s-asia); --c: var(--r-s-asia); } .r-mideast { stroke: var(--r-mideast); --c: var(--r-mideast); }
+.r-africa { stroke: var(--r-africa); --c: var(--r-africa); }
+.dot { fill: var(--c, var(--ink)); stroke: var(--paper); stroke-width: 2; }
+.dot.r1 { fill: var(--paper); stroke: var(--c, var(--ink)); stroke-width: 2.2; }
+.link { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 3; opacity: .45; fill: none; }
+.meet { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.meet.focus, .dot.focus { stroke-width: 3; }
+.lbl { font-size: 13px; fill: var(--ink); stroke: var(--halo); stroke-width: 4px; stroke-linejoin: round; paint-order: stroke; pointer-events: none; dominant-baseline: central; }
+.lbl.ev { fill: var(--ink-2); font-size: 12px; }
+.axis text { fill: var(--ink-2); font-size: 13px; }
+.axis .tick { stroke: var(--ink); stroke-width: 1.2; }
+.axis .base { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+.squeeze { fill: var(--squeeze); }
+.squeeze-label { fill: var(--muted); font-size: 12px; }
+.lens-span { fill: var(--lens); }
+.hover-tick { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
+.hover-date { fill: var(--ink); font-size: 13px; stroke: var(--halo); stroke-width: 4px; paint-order: stroke; }
+
+#tip {
+  position: absolute; z-index: 10; max-width: min(340px, 86vw); pointer-events: none;
+  background: var(--panel); border: 1.5px solid var(--ink); border-radius: 9px 7px 10px 8px; padding: 7px 10px;
+  box-shadow: 0 6px 18px var(--shadow); font-size: 14px;
+}
+#tip h3 { margin: 0 0 2px; font-size: 16px; font-weight: normal; }
+#tip .meta { color: var(--ink-2); font-size: 13px; }
+#tip p { margin: 4px 0 0; }
+#tip .ref { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+
+aside#drawer[hidden] { display: none; }
+aside#drawer {
+  position: absolute; z-index: 30; top: 0; right: 0; bottom: 0; width: min(420px, 100vw);
+  background: var(--panel); border-left: 1.5px solid var(--ink); box-shadow: -8px 0 24px var(--shadow);
+  display: flex; flex-direction: column;
+}
+.dh { display: flex; align-items: baseline; gap: 10px; padding: 12px 16px 8px; border-bottom: 1.5px solid var(--rule); }
+.dh h2 { margin: 0; font-size: 20px; font-weight: normal; flex: 1; }
+.dh .n { color: var(--muted); font-size: 13px; }
+#elist { list-style: none; margin: 0; padding: 6px 8px 24px; overflow: auto; flex: 1; }
+#elist button { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 8px; border-radius: 7px; cursor: pointer; }
+#elist button:hover, #elist button:focus-visible { background: var(--rule); }
+#elist .d { color: var(--muted); font-size: 13px; }
+#elist .t { font-size: 16px; }
+#elist .w { color: var(--ink-2); font-size: 13px; }
+#elist p { margin: 3px 0; font-size: 14px; }
+#elist .ref { color: var(--muted); font-size: 12.5px; }
+
+footer { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; padding: 4px 16px 8px; font-size: 12.5px; color: var(--ink-2); }
+.legend { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 18px; height: 3px; border-radius: 2px; background: var(--c); display: inline-block; }
+footer .credit { margin-left: auto; color: var(--muted); }
+footer a { color: inherit; }
+.hint { color: var(--muted); }
+:focus-visible { outline: 2px solid var(--r-americas); outline-offset: 2px; }
+@media (max-width: 640px) {
+  header { padding: 8px 12px 2px; gap: 4px 12px; } footer { padding: 2px 12px 6px; font-size: 11.5px; }
+  h1 { font-size: 22px; } .sub { font-size: 12.5px; } footer .credit { margin-left: 0; }
+  .controls { gap: 6px; }
+  .btn, select, input[type="search"] { padding: 2px 7px; }
+  .seg button { padding: 2px 8px; }
+  select { max-width: 150px; } input[type="search"] { width: 130px; }
+  .long, .hint { display: none; }
+  .legend { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; }
+  .legend span { white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="titles">
+    <h1>The Cold War</h1>
+    <p class="sub">who stood where, and who met whom, in Odd Arne Westad’s <i>The Cold War: A World History</i></p>
+  </div>
+  <div class="controls">
+    <div class="seg" role="radiogroup" aria-label="Lines show">
+      <button role="radio" data-view="countries" aria-checked="true">Countries</button>
+      <button role="radio" data-view="leaders" aria-checked="false">Leaders</button>
+    </div>
+    <select id="lens" aria-label="Chapter lens"><option value="">All chapters</option></select>
+    <div class="search">
+      <input id="q" type="search" placeholder="find… Castro, Angola, Yalta" autocomplete="off" aria-label="Find a country, leader or event" aria-controls="suggest" aria-expanded="false">
+      <ul id="suggest" role="listbox" hidden></ul>
+    </div>
+    <div id="chips"></div>
+    <label class="check" id="onlywrap" hidden><input type="checkbox" id="only"> only these</label>
+    <button class="btn" id="reset">reset<span class="long"> zoom</span></button>
+    <button class="btn" id="listbtn" aria-expanded="false" aria-controls="drawer">list</button>
+    <button class="btn" id="theme" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+  </div>
+</header>
+<main id="chart">
+  <svg id="svg" role="img" aria-label="Narrative chart: lines are countries or leaders over time, grouped into bands for the political camps they belonged to. Use the list button for an accessible list of events."></svg>
+  <div id="tip" role="tooltip" hidden></div>
+  <aside id="drawer" hidden aria-label="Events list">
+    <div class="dh"><h2>Events</h2><span class="n" id="dcount"></span><button class="btn" id="dclose" aria-label="Close list">×</button></div>
+    <ol id="elist"></ol>
+  </aside>
+</main>
+<footer>
+  <div class="legend" id="legend"></div>
+  <span class="hint">scroll or pinch to zoom · drag to pan · click a line to pin it</span>
+  <span class="credit">Source: Odd Arne Westad, <i>The Cold War: A World History</i> (Basic Books, 2017). Notes are paraphrases; pages refer to the print edition.
+    Font: <a href="https://github.com/ipython/xkcd-font">xkcd Script</a> (CC BY-NC 3.0). After <a href="https://xkcd.com/657/">xkcd 657</a>.</span>
+</footer>
+
+<script type="module">
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+/* ======================================================================== config */
+const CFG = {
+  domain: [1890, 1945, 1991, 2017],   // piecewise time axis: squeezed before 1945 and after 1991
+  frac: [0, 0.2, 0.92, 1],
+  minBaseWidth: 960,                  // narrower screens pan instead of squashing decades
+  margin: { top: 34, right: 12, bottom: 10, left: 12 },
+  lineGap: 10, bandGap: 28, bandPad: 6,
+  lambda: 0.02, iters: 80, sweeps: 4,
+  scaleRange: [0.4, 1.6],
+  zoomMax: 60,
+  step: 6, overscan: 100,
+  wobble: { line: 1.2, blob: 2, wave: 80 },
+  pinch: { plateau: 4, rampMin: 12, rampMax: 60 },
+  rankZoom: { pinch: [0, 1, 3, 8], dot: [0, 1, 2.5, 6] },  // min zoom level per event rank
+  label: { size: 13, repeat: 700 },
+};
+const DATA_URL = /^[\w./-]+\.json$/.test(new URLSearchParams(location.search).get("data") || "")
+  ? new URLSearchParams(location.search).get("data") : "data/coldwar.json";
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/* ======================================================================== helpers */
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const S = u => (u <= 0 ? 0 : u >= 1 ? 1 : u * u * (3 - 2 * u));
+const D0 = CFG.domain[0], D1 = CFG.domain[CFG.domain.length - 1];
+
+function toT(s) {
+  if (s == null) return null;
+  const [y, m] = String(s).split("-").map(Number);
+  return m ? y + (m - 0.5) / 12 : y + 0.5;
+}
+const clampT = t => (t <= D0 + 0.5 ? D0 : Math.min(D1, t));
+function fmtDate(s) {
+  const [y, m] = String(s).split("-");
+  return m ? `${MONTHS[+m - 1]} ${y}` : y;
+}
+function hash(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+  return h >>> 0;
+}
+function rnd(seed, i) {
+  let h = Math.imul(seed ^ Math.imul(i, 0x9e3779b1), 0x85ebca77);
+  h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae3d); h ^= h >>> 16;
+  return ((h >>> 0) / 4294967296) * 2 - 1;
+}
+function vnoise(seed, u) {
+  const i = Math.floor(u), f = u - i, a = rnd(seed, i);
+  return a + (rnd(seed, i + 1) - a) * S(f);
+}
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") n.className = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k != null) n.append(k instanceof Node ? k : document.createTextNode(String(k)));
+  return n;
+}
+const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+/* ======================================================================== data */
+let DATA;
+
+function normalise(raw) {
+  const bands = raw.bands.map((b, i) => ({ ...b, idx: i }));
+  const bandIdx = new Map(bands.map(b => [b.id, b.idx]));
+  const regions = raw.regions.map((r, i) => ({ ...r, idx: i }));
+  const regionIdx = new Map(regions.map(r => [r.id, r.idx]));
+  const chapters = new Map(raw.chapters.map(c => [c.n, c]));
+
+  const countries = raw.countries.map((c, order) => {
+    const segs = c.segments.map(s => ({ ...s, t: clampT(toT(s.from)), band: bandIdx.get(s.band) })).sort((a, b) => a.t - b.t);
+    return { ...c, kind: "country", order, regionIdx: regionIdx.get(c.region) ?? 0, segs,
+      start: segs[0].t, end: c.end ? clampT(toT(c.end)) : D1, chapters: new Set(c.chapters || []) };
+  });
+  const byCountry = new Map(countries.map(c => [c.id, c]));
+  const fallbackBand = bandIdx.get("nonaligned") ?? 0;
+
+  const leaders = raw.leaders.map((l, order) => {
+    const c = byCountry.get(l.country);
+    return { ...l, kind: "leader", order, country: l.country, regionIdx: c ? c.regionIdx : 0,
+      terms: (l.terms || []).map(x => ({ s: clampT(toT(x.start)), e: x.end ? clampT(toT(x.end)) : D1 })).filter(x => x.e > x.s),
+      chapters: new Set(l.chapters || []) };
+  }).filter(l => l.terms.length);
+
+  const events = raw.events.map(e => ({ ...e, t: toT(e.date), countries: e.countries || [], leaders: e.leaders || [] }))
+    .sort((a, b) => a.t - b.t);
+  const weight = new Map();
+  for (const e of events) for (const id of [...e.countries, ...e.leaders]) weight.set(id, (weight.get(id) || 0) + (4 - e.rank));
+
+  return { raw, bands, bandIdx, regions, chapters, countries, byCountry, leaders, events, weight, fallbackBand,
+    byId: new Map([...countries, ...leaders].map(x => [x.id, x])) };
+}
+
+function countryBandAt(c, t) {
+  if (!c || t < c.start || t >= c.end) return -1;
+  let b = -1;
+  for (const s of c.segs) { if (s.t <= t) b = s.band; else break; }
+  return b;
+}
+function countrySegAt(c, t) {
+  let seg = null;
+  for (const s of c.segs) { if (s.t <= t) seg = s; else break; }
+  return seg;
+}
+function leaderBandAt(l, t) {
+  const c = DATA.byCountry.get(l.country);
+  let b = countryBandAt(c, t);
+  if (b < 0 && c && c.parent) b = countryBandAt(DATA.byCountry.get(c.parent), t);
+  return b < 0 ? DATA.fallbackBand : b;
+}
+function bandLabel(bandIdx, t) {
+  const b = DATA.bands[bandIdx];
+  let txt = b.labels[0].text;
+  for (const l of b.labels) if (l.from <= t) txt = l.text;
+  return txt;
+}
+
+/* ======================================================================== layout
+   Pure: (view, subset) -> frames, per-line y per frame, band envelopes, and
+   per-line geometry (start y + list of moves) in layout units. */
+
+function makeLines(view, only) {
+  const keep = x => !only || only.has(x.id);
+  if (view === "countries") {
+    return DATA.countries.filter(keep).map(c => ({
+      id: c.id, name: c.name, short: c.short || c.name, kind: "country", ent: c, regionIdx: c.regionIdx,
+      pieces: [{ s: c.start, e: c.end }],
+      bandAt: t => countryBandAt(c, t),
+      changes: c.segs.map(s => s.t),
+      linkIds: [c.parent, c.mergeInto].filter(Boolean),
+      branchFrom: c.parent || null, mergeTo: c.mergeInto || null,
+      baseKey: c.regionIdx * 1e6 + c.order,
+    }));
+  }
+  return DATA.leaders.filter(keep).map(l => {
+    const c = DATA.byCountry.get(l.country);
+    const changes = [...(c ? c.segs.map(s => s.t) : [])];
+    if (c && c.parent) changes.push(...DATA.byCountry.get(c.parent).segs.map(s => s.t), c.start);
+    const mates = DATA.leaders.filter(o => o.seat === l.seat && o.id !== l.id && keep(o)).map(o => o.id);
+    return {
+      id: l.id, name: l.name, short: l.short || l.name, kind: "leader", ent: l, regionIdx: l.regionIdx,
+      pieces: l.terms, bandAt: t => leaderBandAt(l, t), changes, linkIds: mates,
+      branchFrom: null, mergeTo: null,
+      baseKey: l.regionIdx * 1e6 + (c ? c.order : 99) * 1e3 + l.order,
+    };
+  });
+}
+
+const inPieces = (L, t) => L.pieces.some(p => p.s <= t && t < p.e);
+
+function project(d, w, g) {   // min Σ w(y−d)²  s.t.  y[k+1] − y[k] ≥ g[k]   (isotonic regression / PAV)
+  const n = d.length, G = new Float64Array(n);
+  for (let k = 1; k < n; k++) G[k] = G[k - 1] + g[k - 1];
+  const val = [], wt = [], cnt = [];
+  for (let k = 0; k < n; k++) {
+    let v = d[k] - G[k], ww = w[k], c = 1;
+    while (val.length && val[val.length - 1] > v) {
+      const pv = val.pop(), pw = wt.pop(), pc = cnt.pop();
+      v = (v * ww + pv * pw) / (ww + pw); ww += pw; c += pc;
+    }
+    val.push(v); wt.push(ww); cnt.push(c);
+  }
+  const out = new Float64Array(n);
+  for (let b = 0, k = 0; b < val.length; b++) for (let c = 0; c < cnt[b]; c++, k++) out[k] = val[b] + G[k];
+  return out;
+}
+
+function layout(view, only, seedOrder) {
+  const lines = makeLines(view, only);
+  const n = lines.length;
+  const idIndex = new Map(lines.map((L, i) => [L.id, i]));
+  for (const L of lines) L.links = L.linkIds.map(id => idIndex.get(id)).filter(i => i != null);
+
+  // 1. frames: every date where some line starts, ends or changes band
+  const ts = new Set([D0, D1]);
+  for (const L of lines) {
+    for (const p of L.pieces) { ts.add(p.s); ts.add(p.e); }
+    for (const t of L.changes) if (t > D0 && t < D1 && inPieces(L, t)) ts.add(t);
+  }
+  const times = [...ts].sort((a, b) => a - b);
+  const F = times.length - 1;
+  const band = lines.map(() => new Int8Array(F).fill(-1));
+  for (let i = 0; i < n; i++) for (let f = 0; f < F; f++) {
+    const mid = (times[f] + times[f + 1]) / 2;
+    if (inPieces(lines[i], mid)) band[i][f] = lines[i].bandAt(mid);
+  }
+  const present = (i, f) => f >= 0 && f < F && band[i][f] >= 0;
+
+  // 2. ordering: bands contiguous; barycentric sweeps inside bands
+  const pos = lines.map(() => new Float64Array(F).fill(NaN));
+  const order = new Array(F);
+  const seed = seedOrder ? new Map(seedOrder.map((id, k) => [id, k])) : null;
+  const base = i => (seed && seed.has(lines[i].id) ? seed.get(lines[i].id) : lines[i].baseKey / 1e6);
+
+  function linkKey(i, from) {
+    for (const j of lines[i].links) if (present(j, from)) return pos[j][from] + 0.1;
+    return null;
+  }
+  function bandKey(i, f, from) {   // where a new arrival slots into its band, by region/baseKey
+    const b = band[i][f];
+    if (from < 0 || from >= F) return base(i);
+    const o = order[from] || [];
+    let before = -0.5, hit = null;
+    for (const j of o) {
+      if (band[j][from] < b) before = pos[j][from] + 0.5;
+      if (band[j][from] === b) {
+        if (lines[j].baseKey <= lines[i].baseKey) hit = pos[j][from] + 0.3;
+        else if (hit == null) { hit = pos[j][from] - 0.3; break; }
+      }
+    }
+    return hit != null ? hit : before;
+  }
+  function sortFrame(f, keyOf) {
+    const m = [];
+    for (let i = 0; i < n; i++) if (band[i][f] >= 0) m.push(i);
+    const key = new Map(m.map(i => [i, keyOf(i)]));
+    m.sort((a, b) => band[a][f] - band[b][f] || key.get(a) - key.get(b) || lines[a].baseKey - lines[b].baseKey);
+    for (let i = 0; i < n; i++) pos[i][f] = NaN;
+    m.forEach((i, k) => (pos[i][f] = k));
+    order[f] = m;
+  }
+  sortFrame(0, base);
+  for (let round = 0; round <= CFG.sweeps; round++) {
+    for (let f = round ? 0 : 1; f < F; f++) sortFrame(f, i => {
+      if (present(i, f - 1)) return pos[i][f - 1];
+      return linkKey(i, f - 1) ?? bandKey(i, f, f - 1);
+    });
+    if (round === CFG.sweeps) break;
+    for (let f = F - 2; f >= 0; f--) sortFrame(f, i => {
+      const a = present(i, f - 1), b = present(i, f + 1);
+      if (a && b) return (pos[i][f - 1] + pos[i][f + 1]) / 2;
+      if (b) return pos[i][f + 1];
+      if (a) return pos[i][f - 1];
+      return linkKey(i, f + 1) ?? bandKey(i, f, f + 1);
+    });
+  }
+
+  // 3. compaction: few, clean moves + compact bands, subject to gap constraints.
+  // Straightness is an L1 penalty (iteratively reweighted), so a line makes one clean
+  // move instead of a staircase; each band is pulled towards a fixed anchor so one
+  // band filling up doesn't shift all the others.
+  const gaps = order.map((o, f) => o.slice(1).map((i, k) => (band[i][f] === band[o[k]][f] ? CFG.lineGap : CFG.bandGap)));
+  const dur = Float64Array.from({ length: F }, (_, f) => times[f + 1] - times[f]);
+  const stack = order.map((o, f) => {
+    const t = new Float64Array(o.length);
+    for (let k = 1; k < o.length; k++) t[k] = t[k - 1] + gaps[f][k - 1];
+    const mid = o.length ? t[o.length - 1] / 2 : 0;
+    return t.map(v => v - mid);
+  });
+  const anchor = DATA.bands.map((_, b) => {
+    let sw = 0, sy = 0;
+    order.forEach((o, f) => {
+      const ks = o.map((i, k) => (band[i][f] === b ? k : -1)).filter(k => k >= 0);
+      if (ks.length) { sy += dur[f] * (stack[f][ks[0]] + stack[f][ks[ks.length - 1]]) / 2; sw += dur[f]; }
+    });
+    return sw ? sy / sw : 0;
+  });
+  const T = order.map((o, f) => {
+    const t = new Float64Array(o.length);
+    let k = 0;
+    while (k < o.length) {
+      let j = k; while (j + 1 < o.length && band[o[j + 1]][f] === band[o[k]][f]) j++;
+      for (let m = k; m <= j; m++) t[m] = anchor[band[o[k]][f]] + (m - (k + j) / 2) * CFG.lineGap;
+      k = j + 1;
+    }
+    return t;
+  });
+  const y = lines.map(() => new Float64Array(F).fill(NaN));
+  order.forEach((o, f) => { const out = project(T[f], new Float64Array(o.length).fill(1), gaps[f]); o.forEach((i, k) => (y[i][f] = out[k])); });
+  const linkY = (i, f) => { for (const j of lines[i].links) if (present(j, f)) return y[j][f]; return null; };
+  const EPS = 0.5;
+  for (let it = 0; it < CFG.iters; it++) {
+    const fwd = it % 2 === 0;
+    for (let s = 0; s < F; s++) {
+      const f = fwd ? s : F - 1 - s, o = order[f];
+      if (!o.length) continue;
+      const d = new Float64Array(o.length), w = new Float64Array(o.length);
+      const pull = CFG.lambda * Math.min(dur[f], 10);
+      o.forEach((i, k) => {
+        let sum = pull * T[f][k], ww = pull;
+        for (const g of [f - 1, f + 1]) {
+          let ny = null;
+          if (present(i, g)) ny = y[i][g];
+          else if (g >= 0 && g < F) ny = linkY(i, g);
+          if (ny == null) continue;
+          const wt = 1 / (Math.abs(y[i][f] - ny) + EPS);
+          sum += wt * ny; ww += wt;
+        }
+        d[k] = sum / ww; w[k] = ww;
+      });
+      const out = project(d, w, gaps[f]);
+      o.forEach((i, k) => (y[i][f] = out[k]));
+    }
+  }
+
+  // 4. straightening: drop tiny wiggles when the constraints allow
+  for (let i = 0; i < n; i++) for (let f = 0; f < F - 1; f++) {
+    if (!present(i, f) || !present(i, f + 1)) continue;
+    const dy = y[i][f + 1] - y[i][f];
+    if (dy === 0 || Math.abs(dy) >= 0.6 * CFG.lineGap) continue;
+    const o = order[f + 1], k = pos[i][f + 1];
+    const lo = k > 0 ? y[o[k - 1]][f + 1] + gaps[f + 1][k - 1] : -Infinity;
+    const hi = k < o.length - 1 ? y[o[k + 1]][f + 1] - gaps[f + 1][k] : Infinity;
+    if (y[i][f] >= lo - 1e-6 && y[i][f] <= hi + 1e-6) y[i][f + 1] = y[i][f];
+  }
+  for (const row of y) for (let f = 0; f < F; f++) if (!isNaN(row[f])) row[f] = Math.round(row[f] * 2) / 2;
+
+  // 5. band envelopes and blob geometry
+  let minY = Infinity, maxY = -Infinity;
+  const B = DATA.bands.length;
+  const env = DATA.bands.map(() => ({ top: new Float64Array(F).fill(NaN), bot: new Float64Array(F).fill(NaN) }));
+  for (let f = 0; f < F; f++) for (const i of order[f]) {
+    const e = env[band[i][f]];
+    if (isNaN(e.top[f]) || y[i][f] < e.top[f]) e.top[f] = y[i][f];
+    if (isNaN(e.bot[f]) || y[i][f] > e.bot[f]) e.bot[f] = y[i][f];
+  }
+  const blobs = [];
+  for (let b = 0; b < B; b++) {
+    const e = env[b];
+    for (let f = 0; f < F; f++) if (!isNaN(e.top[f])) { e.top[f] -= CFG.bandPad; e.bot[f] += CFG.bandPad; minY = Math.min(minY, e.top[f]); maxY = Math.max(maxY, e.bot[f]); }
+    for (let f = 0; f < F; f++) {
+      if (isNaN(e.top[f])) continue;
+      let g = f; while (g + 1 < F && !isNaN(e.top[g + 1])) g++;
+      const mk = arr => {
+        const c0 = (e.top[f] + e.bot[f]) / 2, c1 = (e.top[g] + e.bot[g]) / 2;
+        const moves = [{ t: times[f], dy: arr[f] - c0 }];
+        for (let h = f; h < g; h++) if (arr[h + 1] !== arr[h]) moves.push({ t: times[h + 1], dy: arr[h + 1] - arr[h] });
+        moves.push({ t: times[g + 1], dy: c1 - arr[g] });
+        return { y0: c0, moves, s: times[f], e: times[g + 1], openStart: true, openEnd: true };
+      };
+      blobs.push({ band: b, id: `${DATA.bands[b].id}-${f}`, f0: f, f1: g, top: mk(e.top), bot: mk(e.bot) });
+      f = g;
+    }
+  }
+
+  // 6. line geometry: per presence run, start y + moves (+ branch / merge ends)
+  for (let i = 0; i < n; i++) {
+    const L = lines[i];
+    L.geo = [];
+    for (let f = 0; f < F; f++) {
+      if (!present(i, f)) continue;
+      let g = f; while (g + 1 < F && present(i, g + 1)) g++;
+      const piece = { y0: y[i][f], moves: [], s: times[f], e: times[g + 1], f0: f, f1: g, openStart: false, openEnd: false };
+      for (let h = f; h < g; h++) if (y[i][h + 1] !== y[i][h]) piece.moves.push({ t: times[h + 1], dy: y[i][h + 1] - y[i][h] });
+      const pj = L.branchFrom != null ? idIndex.get(L.branchFrom) : null;
+      if (pj != null && present(pj, f - 1)) {
+        piece.moves.unshift({ t: times[f], dy: y[i][f] - y[pj][f - 1] });
+        piece.y0 = y[pj][f - 1]; piece.openStart = true;
+      }
+      const mj = L.mergeTo != null ? idIndex.get(L.mergeTo) : null;
+      if (mj != null && present(mj, g + 1)) {
+        piece.moves.push({ t: times[g + 1], dy: y[mj][g + 1] - y[i][g] });
+        piece.openEnd = true;
+      }
+      L.geo.push(piece);
+      f = g;
+    }
+  }
+  if (!isFinite(minY)) { minY = 0; maxY = 1; }
+  return { view, lines, idIndex, times, F, band, y, order, env, blobs, minY, maxY,
+    frameAt: t => clamp(d3.bisectRight(times, t) - 1, 0, F - 1), present };
+}
+
+/* ======================================================================== state */
+const state = {
+  view: "countries", t: d3.zoomIdentity, L: null, pinned: new Set(), hover: null, hoverEvent: null,
+  lens: null, selected: [], only: false, focusEvent: null,
+};
+const layoutCache = new Map();
+function currentLayout() {
+  const ids = state.only ? selectedLineIds() : [];
+  const only = ids.length ? new Set(ids) : null;
+  const key = state.view + "|" + (only ? [...only].sort().join(",") : "*");
+  if (!layoutCache.has(key)) {
+    const full = only ? currentFull() : null;
+    const seed = full ? full.order[Math.floor(full.F / 2)].map(i => full.lines[i].id) : null;
+    layoutCache.set(key, layout(state.view, only, full ? DATA_ORDER(full) : seed));
+  }
+  return layoutCache.get(key);
+}
+function currentFull() {
+  const key = state.view + "|*";
+  if (!layoutCache.has(key)) layoutCache.set(key, layout(state.view, null));
+  return layoutCache.get(key);
+}
+function DATA_ORDER(full) {   // a global top-to-bottom ordering of ids, from their mean rank in the full layout
+  const acc = new Map();
+  full.order.forEach(o => o.forEach((i, k) => {
+    const a = acc.get(i) || [0, 0]; a[0] += k / Math.max(1, o.length - 1); a[1]++; acc.set(i, a);
+  }));
+  return [...acc.entries()].sort((a, b) => a[1][0] / a[1][1] - b[1][0] / b[1][1]).map(([i]) => full.lines[i].id);
+}
+function selectedLineIds() {
+  const ids = [];
+  for (const s of state.selected) {
+    if (s.kind === "event") continue;
+    if (state.view === "countries") ids.push(s.kind === "country" ? s.id : DATA.byId.get(s.id).country);
+    else if (s.kind === "leader") ids.push(s.id);
+    else ids.push(...DATA.leaders.filter(l => l.country === s.id || DATA.byCountry.get(l.country)?.parent === s.id).map(l => l.id));
+  }
+  return ids;
+}
+
+/* ======================================================================== scales & geometry */
+const svg = d3.select("#svg");
+const root = svg.append("g");
+const gLens = root.append("g"), gSqueeze = root.append("g"), gBlobs = root.append("g"), gBandLabels = root.append("g");
+const gLinks = root.append("g"), gLines = root.append("g"), gMeet = root.append("g"), gDots = root.append("g");
+const gLabels = root.append("g"), gAxis = root.append("g").attr("class", "axis"), gHover = root.append("g");
+const tip = document.getElementById("tip");
+const measureCtx = document.createElement("canvas").getContext("2d");
+const widthCache = new Map();
+function textWidth(s, size = CFG.label.size) {
+  const k = size + "|" + s;
+  if (!widthCache.has(k)) { measureCtx.font = `${size}px "xkcd Script"`; widthCache.set(k, measureCtx.measureText(s).width); }
+  return widthCache.get(k);
+}
+
+let W = 0, H = 0, baseW = 0, baseX = null;
+let geom = null;   // last render's screen-space geometry, used for hit-testing
+
+function resize() {
+  const r = document.getElementById("chart").getBoundingClientRect();
+  W = Math.max(200, r.width); H = Math.max(160, r.height);
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  const pw = W - CFG.margin.left - CFG.margin.right;
+  baseW = Math.max(pw, CFG.minBaseWidth);
+  baseX = d3.scaleLinear().domain(CFG.domain).range(CFG.frac.map(f => f * baseW));
+  root.attr("transform", `translate(${CFG.margin.left},0)`);
+  zoom.extent([[0, 0], [pw, H]]).translateExtent([[0, 0], [baseW, H]]);
+}
+const plotW = () => W - CFG.margin.left - CFG.margin.right;
+const zoomedX = () => baseX.copy().range(baseX.range().map(r => state.t.applyX(r)));
+
+function wobble(seed, x, amp) {
+  const t = state.t, x0 = (x - t.x) / t.k, L = Math.log2(t.k), l = Math.floor(L), f = L - l;
+  const a = vnoise(seed + l * 7919, (x0 * 2 ** l) / CFG.wobble.wave);
+  const b = vnoise(seed + (l + 1) * 7919, (x0 * 2 ** (l + 1)) / CFG.wobble.wave);
+  return amp * ((1 - f) * a + f * b);
+}
+
+function screenPiece(p, X, Y, s) {   // layout-unit piece -> screen-space evaluator
+  // moves that land closer together than their transition widths are merged into one
+  const ms = [];
+  for (const m of p.moves) {
+    const x = X(m.t), d = m.dy * s, last = ms[ms.length - 1];
+    if (last && x - last.x < (last.w + clamp(0.8 * Math.abs(d), 16, 90)) / 2) {
+      const big = Math.abs(d) > Math.abs(last.dy) ? x : last.x;
+      last.dy += d; last.x = big; last.w = clamp(0.8 * Math.abs(last.dy), 16, 90);
+    } else ms.push({ x, dy: d, w: clamp(0.8 * Math.abs(d), 16, 90) });
+  }
+  const n = ms.length, xb = new Float64Array(n), w = new Float64Array(n), dy = new Float64Array(n);
+  ms.forEach((m, k) => { xb[k] = m.x; dy[k] = m.dy; w[k] = m.w; });
+  for (let k = 0; k < n; k++) {   // keep neighbouring transitions from piling into each other
+    const room = Math.min(k > 0 ? xb[k] - xb[k - 1] : Infinity, k < n - 1 ? xb[k + 1] - xb[k] : Infinity);
+    w[k] = Math.max(8, Math.min(w[k], 0.95 * room));
+  }
+  const xs = X(p.s) - (p.openStart && n ? w[0] / 2 : 0);
+  const xe = X(p.e) + (p.openEnd && n ? w[n - 1] / 2 : 0);
+  return { y0: Y(p.y0), xb, w, dy, xs, xe, pinches: [], src: p };
+}
+function evalPiece(q, x, withPinch = true) {
+  let y = q.y0;
+  for (let k = 0; k < q.xb.length; k++) { const u = (x - q.xb[k]) / q.w[k] + 0.5; if (u > 0) y += q.dy[k] * S(u); }
+  if (withPinch) for (const p of q.pinches) {
+    let P = 0;
+    if (x >= p.x0 && x <= p.x1) P = 1;
+    else if (x < p.x0 && x > p.x0 - p.r) P = S(1 - (p.x0 - x) / p.r);
+    else if (x > p.x1 && x < p.x1 + p.r) P = S(1 - (x - p.x1) / p.r);
+    if (P) y += (p.y - y) * P;
+  }
+  return y;
+}
+function sampleXs(qs, a, b) {
+  const xs = [a, b];
+  for (let x = Math.ceil(a / CFG.step) * CFG.step; x < b; x += CFG.step) xs.push(x);
+  for (const q of qs) {
+    for (let k = 0; k < q.xb.length; k++) {
+      const x0 = q.xb[k] - q.w[k] / 2, x1 = q.xb[k] + q.w[k] / 2;
+      if (x1 < a || x0 > b) continue;
+      for (let j = 0; j <= 8; j++) { const x = x0 + ((x1 - x0) * j) / 8; if (x > a && x < b) xs.push(x); }
+    }
+    for (const p of q.pinches) for (let x = p.x0 - p.r; x <= p.x1 + p.r; x += 3) if (x > a && x < b) xs.push(x);
+  }
+  xs.sort((m, n) => m - n);
+  const out = [];
+  for (const x of xs) if (!out.length || x - out[out.length - 1] > 0.75) out.push(x);
+  return out;
+}
+const pt = (x, y) => x.toFixed(1) + "," + y.toFixed(1);
+
+/* ======================================================================== render */
+let raf = 0, rafTimer = 0, labelTimer = 0, lastLabels = 0;
+function schedule(labelsNow = false) {
+  if (raf) return;
+  // animation frames can be paused (background tabs, embedded panes): fall back to a timer
+  const run = () => { if (!raf) return; cancelAnimationFrame(raf); clearTimeout(rafTimer); raf = 0; render(labelsNow); };
+  raf = requestAnimationFrame(run);
+  rafTimer = setTimeout(run, 60);
+}
+
+function visibleEvent(e, k, kind) { return e.t >= D0 && e.t <= D1 && k >= CFG.rankZoom[kind][e.rank]; }
+
+function focusState() {
+  const lines = new Set(), events = new Set();
+  const L = state.L;
+  const addEnt = id => {
+    const x = DATA.byId.get(id);
+    if (!x) return;
+    if (state.view === "countries") lines.add(x.kind === "country" ? x.id : x.country);
+    else if (x.kind === "leader") lines.add(x.id);
+    else DATA.leaders.forEach(l => { if (l.country === x.id || DATA.byCountry.get(l.country)?.parent === x.id) lines.add(l.id); });
+  };
+  const addEvent = e => { events.add(e.id); (state.view === "countries" ? e.countries : e.leaders).forEach(addEnt); };
+  state.pinned.forEach(addEnt);
+  for (const s of state.selected) {
+    if (s.kind === "event") addEvent(DATA.events.find(e => e.id === s.id)); else addEnt(s.id);
+  }
+  if (state.lens != null) {
+    for (const x of state.view === "countries" ? DATA.countries : DATA.leaders) if (x.chapters.has(state.lens)) lines.add(x.id);
+    for (const e of DATA.events) if (e.refs.some(r => r.ch === state.lens)) addEvent(e);
+  }
+  if (state.focusEvent) addEvent(state.focusEvent);
+  const hoverLines = new Set(lines), hoverEvents = new Set(events);
+  if (state.hover) hoverLines.add(state.hover);
+  if (state.hoverEvent) { hoverEvents.add(state.hoverEvent.id); (state.view === "countries" ? state.hoverEvent.countries : state.hoverEvent.leaders).forEach(id => hoverLines.add(id)); }
+  const active = hoverLines.size > 0 && (lines.size > 0 || state.hover || state.hoverEvent);
+  return { active, lines: hoverLines, events: hoverEvents, lensOnly: state.lens != null };
+}
+
+function computePinches(L, X, Y, s, qByLine, k) {
+  const pinches = [], dotsSkipped = [];
+  if (L.view !== "leaders") return { pinches, dotsSkipped };
+  const cands = DATA.events.filter(e => visibleEvent(e, k, "pinch"))
+    .sort((a, b) => a.rank - b.rank || a.t - b.t);
+  const perLine = new Map(), gutterUse = [];
+  for (const e of cands) {
+    const parts = [];
+    for (const id of e.leaders) {
+      const i = L.idIndex.get(id);
+      if (i == null) continue;
+      const q = (qByLine.get(id) || []).find(q => q.src.s <= e.t && e.t < q.src.e);
+      if (!q) continue;
+      parts.push({ id, i, q, base: evalPiece(q, X(e.t), false) });
+    }
+    if (parts.length < 2) continue;
+    const xe = X(e.t), f = L.frameAt(e.t);
+    // gutters: between consecutive non-empty bands in this frame, plus above and below the stack
+    const bs = [];
+    for (let b = 0; b < DATA.bands.length; b++) if (!isNaN(L.env[b].top[f])) bs.push(b);
+    const gutters = [Y(L.env[bs[0]].top[f]) - CFG.bandGap * s / 2];
+    for (let j = 0; j + 1 < bs.length; j++) gutters.push((Y(L.env[bs[j]].bot[f]) + Y(L.env[bs[j + 1]].top[f])) / 2);
+    gutters.push(Y(L.env[bs[bs.length - 1]].bot[f]) + CFG.bandGap * s / 2);
+    const bary = d3.mean(parts, p => p.base);
+    let gi = 0;
+    gutters.forEach((g, j) => { if (Math.abs(g - bary) < Math.abs(gutters[gi] - bary)) gi = j; });
+    parts.sort((a, b) => a.base - b.base);
+    const sp = parts.length > 1 ? Math.min(3, Math.max(1.5, (CFG.bandGap * s - 10) / (parts.length - 1))) : 0;
+    const slots = parts.map((p, j) => gutters[gi] + (j - (parts.length - 1) / 2) * sp);
+    const rs = parts.map((p, j) => clamp(0.5 * Math.abs(p.base - slots[j]), CFG.pinch.rampMin, CFG.pinch.rampMax));
+    const delta = CFG.pinch.plateau + Math.max(...rs);
+    // repeat meeting of the same group close by -> extend that plateau
+    const sameSet = pinches.find(p => p.ids.length === parts.length && parts.every(x => p.ids.includes(x.id)) && Math.abs(xe - p.x1) < 2 * delta + 20 && xe > p.x0);
+    if (sameSet) { sameSet.x1 = Math.max(sameSet.x1, xe + CFG.pinch.plateau); sameSet.events.push(e); continue; }
+    const clash = parts.some(p => (perLine.get(p.id) || []).some(o => xe > o.x0 - o.r - delta && xe < o.x1 + o.r + delta))
+      || gutterUse.some(u => u.f === f && u.gi === gi && Math.abs(u.x - xe) < u.d + delta);
+    if (clash) { dotsSkipped.push(e); continue; }
+    const pinch = { event: e, events: [e], ids: parts.map(p => p.id), x0: xe - CFG.pinch.plateau, x1: xe + CFG.pinch.plateau, gy: gutters[gi], sp, n: parts.length };
+    parts.forEach((p, j) => {
+      const entry = { x0: pinch.x0, x1: pinch.x1, r: rs[j], y: slots[j], pinch };
+      p.q.pinches.push(entry);
+      if (!perLine.has(p.id)) perLine.set(p.id, []);
+      perLine.get(p.id).push(entry);
+    });
+    gutterUse.push({ f, gi, x: xe, d: delta });
+    pinches.push(pinch);
+  }
+  // keep plateaus in sync after extension
+  for (const p of pinches) for (const id of p.ids) for (const en of perLine.get(id)) if (en.pinch === p) { en.x0 = p.x0; en.x1 = p.x1; }
+  return { pinches, dotsSkipped };
+}
+
+function render(forceLabels = false) {
+  const L = state.L;
+  if (!L || !W) return;
+  const X = zoomedX(), k = state.t.k;
+  const top = CFG.margin.top + 8, avail = H - top - CFG.margin.bottom - 8;
+  const extent = Math.max(1, L.maxY - L.minY);
+  const s = clamp(avail / extent, ...CFG.scaleRange);
+  const oy = top + Math.max(0, (avail - extent * s) / 2);
+  const Y = v => oy + (v - L.minY) * s;
+  const pw = plotW(), vx0 = -CFG.overscan, vx1 = pw + CFG.overscan;
+  const F = focusState();
+
+  // squeezed eras + lens span
+  const sq = [[CFG.domain[0], CFG.domain[1]], [CFG.domain[2], CFG.domain[3]]];
+  gSqueeze.selectAll("rect").data(sq).join("rect").attr("class", "squeeze")
+    .attr("x", d => X(d[0])).attr("width", d => X(d[1]) - X(d[0])).attr("y", CFG.margin.top).attr("height", H - CFG.margin.top);
+  gSqueeze.selectAll("text").data(sq).join("text").attr("class", "squeeze-label")
+    .attr("x", d => clamp((X(d[0]) + X(d[1])) / 2, 40, pw - 40)).attr("y", H - 6).attr("text-anchor", "middle")
+    .attr("display", d => (X(d[1]) > 0 && X(d[0]) < pw ? null : "none")).text("(time is squeezed here)");
+  const ch = state.lens != null ? DATA.chapters.get(state.lens) : null;
+  gLens.selectAll("rect").data(ch && ch.span ? [ch.span] : []).join("rect").attr("class", "lens-span")
+    .attr("x", d => X(d[0])).attr("width", d => Math.max(2, X(d[1]) - X(d[0]))).attr("y", CFG.margin.top).attr("height", H - CFG.margin.top);
+
+  // blobs
+  const blobGeo = L.blobs.map(bl => {
+    const a = screenPiece(bl.top, X, Y, s), b = screenPiece(bl.bot, X, Y, s);
+    const x0 = Math.max(Math.min(a.xs, b.xs), vx0), x1 = Math.min(Math.max(a.xe, b.xe), vx1);
+    if (x1 <= x0) return null;
+    const xs = sampleXs([a, b], x0, x1), seed = hash(bl.id);
+    const up = xs.map(x => pt(x, evalPiece(a, x) + wobble(seed, x, CFG.wobble.blob)));
+    const dn = xs.map(x => pt(x, evalPiece(b, x) + wobble(seed + 1, x, CFG.wobble.blob))).reverse();
+    return { ...bl, a, b, d: "M" + up.join("L") + "L" + dn.join("L") + "Z" };
+  }).filter(Boolean);
+  gBlobs.selectAll("path").data(blobGeo, d => d.id).join("path")
+    .attr("class", d => "blob b-" + DATA.bands[d.band].id).attr("d", d => d.d);
+
+  // line pieces in screen space (pinches need them before drawing)
+  const qByLine = new Map();
+  for (const ln of L.lines) qByLine.set(ln.id, ln.geo.map(p => screenPiece(p, X, Y, s)));
+  const { pinches, dotsSkipped } = computePinches(L, X, Y, s, qByLine, k);
+
+  const pieces = [];
+  for (const ln of L.lines) {
+    const seed = hash(ln.id);
+    qByLine.get(ln.id).forEach((q, j) => {
+      const a = Math.max(q.xs, vx0), b = Math.min(q.xe, vx1);
+      if (b <= a) return;
+      const xs = sampleXs([q], a, b);
+      pieces.push({ key: ln.id + ":" + j, ln, q, seed, a, b,
+        d: "M" + xs.map(x => pt(x, evalPiece(q, x) + wobble(seed, x, CFG.wobble.line))).join("L") });
+    });
+  }
+  const regionOf = ln => "r-" + DATA.regions[ln.regionIdx].id;
+  gLines.selectAll("path").data(pieces, d => d.key).join("path")
+    .attr("class", d => `line ${regionOf(d.ln)}${F.active && !F.lines.has(d.ln.id) ? " dim" : ""}${F.lines.has(d.ln.id) && F.active ? " hi" : ""}`)
+    .attr("d", d => d.d);
+
+  // events: meeting rings (leaders view) and dots
+  const markers = [];
+  gMeet.selectAll("rect").data(pinches, d => d.event.id).join("rect")
+    .attr("class", d => `meet${F.active && !d.events.some(e => F.events.has(e.id)) ? " dim" : ""}${d.events.some(e => F.events.has(e.id)) ? " focus" : ""}`)
+    .attr("x", d => d.x0 - 4).attr("width", d => d.x1 - d.x0 + 8)
+    .attr("y", d => d.gy - ((d.n - 1) * d.sp) / 2 - 4).attr("height", d => (d.n - 1) * d.sp + 8)
+    .attr("rx", 5).each(d => markers.push({ x: (d.x0 + d.x1) / 2, y: d.gy, r: Math.max(8, (d.x1 - d.x0) / 2 + 4), event: d.event, events: d.events }));
+  const dots = [], linksD = [];
+  const skipped = new Set(dotsSkipped.map(e => e.id));
+  const pinched = new Set(pinches.flatMap(p => p.events.map(e => e.id)));
+  for (const e of DATA.events) {
+    if (pinched.has(e.id)) continue;
+    const lensHit = F.events.has(e.id);
+    if (!visibleEvent(e, k, "dot") && !skipped.has(e.id) && !lensHit) continue;
+    if (e.t < D0 || e.t > D1) continue;
+    const x = X(e.t);
+    if (x < -10 || x > pw + 10) continue;
+    const ids = L.view === "countries" ? e.countries : e.leaders;
+    const ys = [];
+    for (const id of ids) {
+      const q = (qByLine.get(id) || []).find(q => q.src.s <= e.t && e.t < q.src.e);
+      if (!q) continue;
+      const ln = L.lines[L.idIndex.get(id)];
+      const yy = evalPiece(q, x) + wobble(hash(id), x, CFG.wobble.line);
+      ys.push(yy);
+      dots.push({ key: e.id + ":" + id, x, y: yy, e, ln });
+      markers.push({ x, y: yy, r: 7, event: e });
+    }
+    if (ys.length > 1 && e.rank <= 2) linksD.push({ key: e.id, e, x, y0: Math.min(...ys), y1: Math.max(...ys) });
+  }
+  gLinks.selectAll("line").data(linksD, d => d.key).join("line").attr("class", d => `link${F.active && !F.events.has(d.e.id) ? " dim" : ""}`)
+    .attr("x1", d => d.x).attr("x2", d => d.x).attr("y1", d => d.y0).attr("y2", d => d.y1)
+    .attr("opacity", d => (F.active && !F.events.has(d.e.id) ? 0.08 : null));
+  gDots.selectAll("circle").data(dots, d => d.key).join("circle")
+    .attr("class", d => `dot ${regionOf(d.ln)} r${d.e.rank}${F.active && !F.events.has(d.e.id) ? " dim" : ""}${F.events.has(d.e.id) ? " focus" : ""}`)
+    .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => (d.e.rank === 1 ? 4.2 : 3.2));
+
+  axis(X, pw);
+  geom = { X, Y, s, qByLine, markers, pw, L };
+
+  const now = performance.now();
+  clearTimeout(labelTimer);
+  if (forceLabels || now - lastLabels > 100) { lastLabels = now; labels(pieces, blobGeo, pinches, F); }
+  else labelTimer = setTimeout(() => { lastLabels = performance.now(); labels(pieces, blobGeo, pinches, F); }, 120);
+  drawHover();
+}
+
+function axis(X, pw) {
+  const ticks = [];
+  for (let j = 0; j + 1 < CFG.domain.length; j++) {
+    const a = CFG.domain[j], b = CFG.domain[j + 1], xa = X(a), xb = X(b);
+    const va = Math.max(xa, 0), vb = Math.min(xb, pw);
+    if (vb <= va) continue;
+    const t0 = X.invert(va), t1 = X.invert(vb);
+    const count = Math.max(1, Math.floor((vb - va) / 70));
+    for (const t of d3.ticks(t0, t1, count)) if (Number.isInteger(t) && t >= a && (t < b || j === CFG.domain.length - 2)) ticks.push(t);
+  }
+  const uniq = [];
+  for (const t of [...new Set([...ticks, CFG.domain[1], CFG.domain[2]])].sort((a, b) => a - b)) {
+    const x = X(t);
+    if (x < 0 || x > pw) continue;
+    if (uniq.length && x - X(uniq[uniq.length - 1]) < 40) {
+      if (t === CFG.domain[1] || t === CFG.domain[2]) uniq.pop(); else continue;
+    }
+    uniq.push(t);
+  }
+  const baseY = CFG.margin.top - 4;
+  gAxis.selectAll("path.base").data([0]).join("path").attr("class", "base")
+    .attr("d", () => {
+      const pts = [];
+      for (let x = 0; x <= pw; x += 8) pts.push(pt(x, baseY + wobble(77, x, 0.8)));
+      return "M" + pts.join("L");
+    });
+  gAxis.selectAll("line.tick").data(uniq, d => d).join("line").attr("class", "tick")
+    .attr("x1", d => X(d)).attr("x2", d => X(d)).attr("y1", baseY - 4).attr("y2", baseY + 3);
+  gAxis.selectAll("text").data(uniq, d => d).join("text").attr("x", d => X(d)).attr("y", baseY - 9)
+    .attr("text-anchor", "middle").text(d => d);
+  const breaks = [CFG.domain[1], CFG.domain[2]].filter(t => X(t) > 0 && X(t) < pw);
+  gAxis.selectAll("path.brk").data(breaks, d => d).join("path").attr("class", "base brk")
+    .attr("d", d => { const x = X(d); return `M${x - 5},${baseY + 6}L${x - 1},${baseY - 6}M${x + 1},${baseY + 6}L${x + 5},${baseY - 6}`; });
+}
+
+/* ------------------------------------------------------------------ labels */
+function labels(pieces, blobGeo, pinches, F) {
+  const placed = [], out = [], pw = plotW();
+  const hits = (r) => placed.some(p => r.x0 < p.x1 && r.x1 > p.x0 && r.y0 < p.y1 && r.y1 > p.y0);
+  const place = (r) => { if (r.x0 < 0 || r.x1 > pw || hits(r)) return false; placed.push(r); return true; };
+
+  // band names: slide a window along each blob and use the roomiest visible stretch;
+  // thin bands get their name just above the blob
+  const L = state.L, X = geom.X;
+  for (const bl of blobGeo) {
+    const x0 = Math.max(0, Math.min(bl.a.xs, bl.b.xs)), x1 = Math.min(pw, Math.max(bl.a.xe, bl.b.xe));
+    if (x1 - x0 < 40) continue;
+    const xs = [], tops = [], hs = [];
+    for (let x = x0; x <= x1; x += 12) { const t = evalPiece(bl.a, x); xs.push(x); tops.push(t); hs.push(evalPiece(bl.b, x) - t); }
+    const txt0 = bandLabel(bl.band, X.invert((x0 + x1) / 2));
+    const w = textWidth(txt0.toUpperCase(), 13) * 1.12 + 6, span = Math.ceil(w / 12);
+    let best = null;
+    for (let i = 0; i + span < xs.length; i++) {
+      let mh = Infinity, mt = Infinity, Mt = -Infinity;
+      for (let j = i; j <= i + span; j++) { mh = Math.min(mh, hs[j]); mt = Math.min(mt, tops[j]); Mt = Math.max(Mt, tops[j]); }
+      if (mh < 3) continue;
+      const score = Math.min(mh, 40) * 10 - (Mt - mt);
+      if (!best || score > best.score) best = { i, mh, mt, Mt, score };
+    }
+    if (!best) continue;
+    const cx = xs[best.i] + w / 2, txt = bandLabel(bl.band, X.invert(cx));
+    const inside = best.mh > 24;
+    const y = inside ? best.Mt + 9 : best.mt - 8;
+    const r = { x0: cx - w / 2, x1: cx + w / 2, y0: y - 8, y1: y + 7 };
+    if (place(r)) out.push({ key: "band:" + bl.id, cls: "band-label", x: cx, y, text: txt, anchor: "middle" });
+  }
+
+  // meeting labels (leaders view): rank-1 meetings get their title
+  for (const p of pinches) {
+    if (p.event.rank > 1 && !F.events.has(p.event.id)) continue;
+    const txt = p.event.title, w = textWidth(txt, 12) + 6;
+    const cx = (p.x0 + p.x1) / 2, y = p.gy - ((p.n - 1) * p.sp) / 2 - 12;
+    const r = { x0: cx - w / 2, x1: cx + w / 2, y0: y - 7, y1: y + 7 };
+    if (place(r)) out.push({ key: "ev:" + p.event.id, cls: "lbl ev", x: cx, y, text: txt, anchor: "middle" });
+  }
+
+  // line names
+  const cands = [];
+  for (const pc of pieces) {
+    const { ln, q, a, b } = pc;
+    const focus = F.active && F.lines.has(ln.id);
+    const imp = (DATA.weight.get(ln.id) || 0);
+    const texts = [...new Set([ln.name, ln.short])].map(t => ({ t, w: textWidth(t) + 6 }));
+    const wMin = Math.min(...texts.map(t => t.w));
+    const add = (x, pri) => { if (x >= Math.max(a, 0) && x + wMin <= Math.min(b, pw)) cands.push({ pc, x, texts, pri: pri - (focus ? 10 : 0) - imp / 1000 }); };
+    const xs = q.xs;
+    if (xs >= 0 && xs < pw) add(xs + 4, 2);
+    q.xb.forEach((xb, j) => { if (Math.abs(q.dy[j]) > CFG.lineGap * geom.s * 1.6) add(xb + q.w[j] / 2 + 4, 3); });
+    if (xs < 0 && b > 60) add(4, 4);
+    for (let x = Math.max(xs, 4) + CFG.label.repeat; x < b - wMin; x += CFG.label.repeat) add(x, 5);
+  }
+  cands.sort((m, n) => m.pri - n.pri);
+  const done = new Map();
+  for (const c of cands) {
+    const k = c.pc.key, xsPlaced = done.get(k) || [];
+    if (xsPlaced.length >= 4 || xsPlaced.some(x => Math.abs(x - c.x) < 260)) continue;
+    let ok = false;
+    for (const { t, w } of c.texts) {
+      for (let tries = 0; tries < 5 && !ok; tries++) {
+        const x = c.x + tries * 24;
+        if (x + w > Math.min(c.pc.b, pw)) break;
+        const y0 = evalPiece(c.pc.q, x), y1 = evalPiece(c.pc.q, x + w), ym = evalPiece(c.pc.q, x + w / 2);
+        if (Math.abs(y0 - y1) > 3 || Math.abs(ym - y0) > 3) continue;
+        const r = { x0: x - 2, x1: x + w, y0: ym - 7, y1: ym + 7 };
+        if (place(r)) {
+          ok = true;
+          done.set(k, [...xsPlaced, c.x]);
+          const dim = F.active && !F.lines.has(c.pc.ln.id);
+          out.push({ key: k + "@" + Math.round(c.x), cls: "lbl" + (dim ? " dim" : ""), x: x + 2, y: ym, text: t, anchor: "start" });
+        }
+      }
+      if (ok) break;
+    }
+  }
+  gLabels.selectAll("text").data(out, d => d.key).join("text")
+    .attr("class", d => d.cls).attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", d => d.anchor).text(d => d.text);
+  gBandLabels.selectAll("*").remove();
+}
+
+/* ------------------------------------------------------------------ hover, tooltip */
+function hitTest(mx, my) {
+  if (!geom) return null;
+  let best = null;
+  for (const m of geom.markers) {
+    const d = Math.hypot(m.x - mx, m.y - my);
+    if (d <= m.r && (!best || d < best.d)) best = { d, event: m.event };
+  }
+  if (best) return best;
+  const tol = matchMedia("(pointer: coarse)").matches ? 12 : 6;
+  for (const [id, qs] of geom.qByLine) for (const q of qs) {
+    if (mx < q.xs || mx > q.xe) continue;
+    const d = Math.abs(evalPiece(q, mx) - my);
+    if (d <= tol && (!best || d < best.d)) best = { d, line: id, q };
+  }
+  return best;
+}
+
+function drawHover() {
+  gHover.selectAll("*").remove();
+  if (!state.hover || !geom || state.hoverX == null) return;
+  const qs = geom.qByLine.get(state.hover) || [];
+  for (const q of qs) q.xb.forEach((x, j) => {
+    if (Math.abs(state.hoverX - x) > q.w[j] / 2 + 6 || Math.abs(q.dy[j]) < CFG.lineGap * geom.s * 1.6) return;
+    gHover.append("line").attr("class", "hover-tick").attr("x1", x).attr("x2", x).attr("y1", CFG.margin.top - 4).attr("y2", H);
+    const t = geom.X.invert(x), yr = Math.floor(t), mo = clamp(Math.floor((t - yr) * 12), 0, 11);
+    gHover.append("text").attr("class", "hover-date").attr("x", x + 4).attr("y", CFG.margin.top + 12).text(`${MONTHS[mo]} ${yr}`);
+  });
+}
+
+function refLabel(r) {
+  const c = DATA.chapters.get(r.ch);
+  const t = c ? (r.ch === 0 ? "Intro" : r.ch === 23 ? "Conclusion" : `Ch. ${r.ch}`) + ` “${c.title}”` : `Ch. ${r.ch}`;
+  return `${t} · p. ${r.p}`;
+}
+const nameOf = id => DATA.byId.get(id)?.name || id;
+
+function showTip(content, mx, my) {
+  tip.replaceChildren(...content);
+  tip.hidden = false;
+  const box = document.getElementById("chart").getBoundingClientRect();
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let x = mx + CFG.margin.left + 14, y = my + 14;
+  if (x + tw > box.width - 8) x = mx + CFG.margin.left - tw - 14;
+  if (y + th > box.height - 8) y = my - th - 14;
+  tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+}
+function eventTip(e) {
+  const who = [...e.leaders.map(nameOf), ...e.countries.filter(c => !e.leaders.some(l => DATA.byId.get(l)?.country === c)).map(nameOf)];
+  return [el("h3", {}, e.title), el("div", { class: "meta" }, fmtDate(e.date) + (who.length ? " · " + who.join(", ") : "")),
+    el("p", {}, e.note), el("div", { class: "ref" }, e.refs.map(refLabel).join("; "))];
+}
+function lineTip(id, t) {
+  const x = DATA.byId.get(id);
+  if (x.kind === "country") {
+    const seg = countrySegAt(x, t);
+    const hist = x.segs.map(s => `${Math.floor(s.t)} ${bandLabel(s.band, s.t)}`).join(" → ");
+    return [el("h3", {}, x.name), el("div", { class: "meta" }, hist),
+      seg ? el("p", {}, `${bandLabel(seg.band, t)}, from ${fmtDate(seg.from)}: ${seg.note}`) : null,
+      seg && seg.ref ? el("div", { class: "ref" }, refLabel(seg.ref)) : null];
+  }
+  const terms = x.terms.map(r => `${Math.floor(r.s)}–${r.e >= D1 ? "" : Math.floor(r.e)}`).join(", ");
+  return [el("h3", {}, x.name), el("div", { class: "meta" }, `${x.role || ""}${x.role ? " · " : ""}${nameOf(x.country)} · ${terms}`),
+    x.note ? el("p", {}, x.note) : null];
+}
+
+/* ======================================================================== interactions */
+const zoom = d3.zoom().scaleExtent([1, CFG.zoomMax])
+  .filter(ev => (ev.type === "wheel" ? Math.abs(ev.deltaY) >= Math.abs(ev.deltaX) : !ev.button))
+  .on("zoom", ev => { state.t = ev.transform; hideTip(); schedule(); })
+  .on("end", () => schedule(true));
+
+svg.on("wheel.pan", ev => {
+  if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) { ev.preventDefault(); zoom.translateBy(svg, -ev.deltaX / state.t.k, 0); }
+}, { passive: false });
+
+function hideTip() { tip.hidden = true; }
+svg.on("pointermove", ev => {
+  if (ev.buttons) return;
+  const [mx0, my] = d3.pointer(ev, svg.node());
+  const mx = mx0 - CFG.margin.left;
+  const h = hitTest(mx, my);
+  const prev = state.hover + "|" + (state.hoverEvent && state.hoverEvent.id);
+  state.hover = h && h.line ? h.line : null;
+  state.hoverEvent = h && h.event ? h.event : null;
+  state.hoverX = mx;
+  svg.style("cursor", h ? "pointer" : null);
+  if (h && h.event) showTip(eventTip(h.event), mx, my);
+  else if (h && h.line) showTip(lineTip(h.line, geom.X.invert(mx)), mx, my);
+  else hideTip();
+  if (prev !== state.hover + "|" + (state.hoverEvent && state.hoverEvent.id)) schedule(true); else drawHover();
+});
+svg.on("pointerleave", () => { state.hover = null; state.hoverEvent = null; hideTip(); schedule(true); });
+svg.on("click", ev => {
+  const [mx0, my] = d3.pointer(ev, svg.node());
+  const h = hitTest(mx0 - CFG.margin.left, my);
+  if (h && h.line) { state.pinned.has(h.line) ? state.pinned.delete(h.line) : state.pinned.add(h.line); }
+  else if (h && h.event) { state.focusEvent = state.focusEvent === h.event ? null : h.event; }
+  else { state.pinned.clear(); state.focusEvent = null; }
+  if (h) showTip(h.event ? eventTip(h.event) : lineTip(h.line, geom.X.invert(mx0 - CFG.margin.left)), mx0 - CFG.margin.left, my);
+  schedule(true); renderList();
+});
+
+function zoomTo(t0, t1, dur = 650) {
+  const pw = plotW();
+  const a = baseX(Math.max(D0, t0)), b = baseX(Math.min(D1, t1));
+  const kk = clamp(pw / Math.max(1, b - a), 1, CFG.zoomMax);
+  const t = d3.zoomIdentity.translate(-a * kk + (pw - (b - a) * kk) / 2, 0).scale(kk);
+  applyZoom(t, dur);
+}
+function applyZoom(t, dur) {
+  let ended = false;
+  svg.transition().duration(dur).call(zoom.transform, t).on("end interrupt", () => (ended = true));
+  setTimeout(() => { if (!ended) { svg.interrupt(); svg.call(zoom.transform, t); } }, dur + 250);
+}
+function resetZoom() {
+  const pw = plotW();
+  const t = baseW > pw ? d3.zoomIdentity.translate(-baseX(1938), 0) : d3.zoomIdentity;
+  applyZoom(t, 500);
+}
+document.getElementById("reset").onclick = resetZoom;
+
+// view toggle
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setView(b.dataset.view)));
+function setView(v, animate = true) {
+  if (v === state.view) return;
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
+  const swap = () => {
+    state.view = v; state.pinned.clear(); state.hover = null;
+    state.L = currentLayout();
+    render(true);
+    root.style("opacity", 1);
+  };
+  if (!animate) return swap();
+  root.style("opacity", 0);
+  setTimeout(swap, 200);
+}
+
+// chapter lens
+const lensSel = document.getElementById("lens");
+function initLens() {
+  for (const c of DATA.raw.chapters) {
+    const label = c.n === 0 ? `Intro: ${c.title}` : c.n === 23 ? `Conclusion: ${c.title}` : `${c.n}. ${c.title}`;
+    lensSel.append(el("option", { value: c.n }, label));
+  }
+  lensSel.onchange = () => {
+    state.lens = lensSel.value === "" ? null : +lensSel.value;
+    const c = state.lens != null ? DATA.chapters.get(state.lens) : null;
+    if (c && c.span) zoomTo(c.span[0] - 1, c.span[1] + 1); else schedule(true);
+    renderList();
+  };
+}
+
+// search + chips
+const q = document.getElementById("q"), sug = document.getElementById("suggest");
+let sugItems = [], sugIdx = -1;
+function searchIndex() {
+  return [
+    ...DATA.countries.map(c => ({ kind: "country", id: c.id, label: c.name, k: "country" })),
+    ...DATA.leaders.map(l => ({ kind: "leader", id: l.id, label: l.name, k: nameOf(l.country) })),
+    ...DATA.events.map(e => ({ kind: "event", id: e.id, label: e.title, k: fmtDate(e.date) })),
+  ];
+}
+let SEARCH = [];
+q.addEventListener("input", () => {
+  const v = fold(q.value.trim());
+  if (!v) { closeSug(); return; }
+  const score = s => { const f = fold(s.label), i = f.indexOf(v); return (s.kind === "event" ? 100 : 0) + (i === 0 ? 0 : /\W/.test(f[i - 1]) ? 10 : 50) + i / 100; };
+  sugItems = SEARCH.filter(s => fold(s.label).includes(v)).sort((a, b) => score(a) - score(b)).slice(0, 10);
+  sugIdx = sugItems.length ? 0 : -1;
+  drawSug();
+});
+q.addEventListener("keydown", ev => {
+  if (sug.hidden) return;
+  if (ev.key === "ArrowDown") { sugIdx = Math.min(sugItems.length - 1, sugIdx + 1); drawSug(); ev.preventDefault(); }
+  else if (ev.key === "ArrowUp") { sugIdx = Math.max(0, sugIdx - 1); drawSug(); ev.preventDefault(); }
+  else if (ev.key === "Enter" && sugIdx >= 0) { pick(sugItems[sugIdx]); ev.preventDefault(); }
+  else if (ev.key === "Escape") closeSug();
+});
+q.addEventListener("blur", () => setTimeout(closeSug, 150));
+function drawSug() {
+  sug.replaceChildren(...sugItems.map((s, i) => el("li", { role: "option", "aria-selected": String(i === sugIdx), onmousedown: ev => { ev.preventDefault(); pick(s); } },
+    el("span", {}, s.label), el("span", { class: "k" }, s.k))));
+  sug.hidden = !sugItems.length; q.setAttribute("aria-expanded", String(!sug.hidden));
+}
+function closeSug() { sug.hidden = true; q.setAttribute("aria-expanded", "false"); }
+function pick(s) {
+  closeSug(); q.value = "";
+  if (!state.selected.some(x => x.id === s.id)) state.selected.push(s);
+  if (s.kind === "event") { const e = DATA.events.find(x => x.id === s.id); zoomTo(e.t - 3, e.t + 3); }
+  if (state.view === "countries" && s.kind === "leader") {} // shown via its country line
+  afterSelection();
+}
+const onlyBox = document.getElementById("only");
+onlyBox.onchange = () => { state.only = onlyBox.checked; state.L = currentLayout(); schedule(true); };
+function afterSelection() {
+  const chips = document.getElementById("chips");
+  chips.replaceChildren(...state.selected.map(s => el("span", { class: "chip" }, s.label,
+    el("button", { "aria-label": "Remove " + s.label, onclick: () => { state.selected = state.selected.filter(x => x !== s); afterSelection(); } }, "×"))));
+  document.getElementById("onlywrap").hidden = !state.selected.some(s => s.kind !== "event");
+  if (!state.selected.length) { state.only = false; onlyBox.checked = false; }
+  state.L = currentLayout();
+  schedule(true); renderList();
+}
+
+// events list drawer (also the accessible table view)
+const drawer = document.getElementById("drawer"), listBtn = document.getElementById("listbtn");
+listBtn.onclick = () => { drawer.hidden = !drawer.hidden; listBtn.setAttribute("aria-expanded", String(!drawer.hidden)); renderList(); };
+document.getElementById("dclose").onclick = () => { drawer.hidden = true; listBtn.setAttribute("aria-expanded", "false"); listBtn.focus(); };
+function renderList() {
+  if (drawer.hidden) return;
+  const F = focusState();
+  let evs = DATA.events;
+  const narrowed = state.lens != null || state.selected.length || state.pinned.size || state.focusEvent;
+  if (narrowed) evs = evs.filter(e => F.events.has(e.id) || (state.view === "countries" ? e.countries : e.leaders).some(id => F.lines.has(id)));
+  document.getElementById("dcount").textContent = `${evs.length} of ${DATA.events.length}`;
+  document.getElementById("elist").replaceChildren(...evs.map(e => el("li", {}, el("button", { onclick: () => {
+    state.focusEvent = e; if (e.t >= D0 && e.t <= D1) zoomTo(e.t - 2.5, e.t + 2.5); schedule(true);
+    if (matchMedia("(max-width: 640px)").matches) { drawer.hidden = true; listBtn.setAttribute("aria-expanded", "false"); }
+  } },
+    el("div", { class: "d" }, fmtDate(e.date) + " · " + e.kind + (e.rank === 1 ? " · ★" : "")),
+    el("div", { class: "t" }, e.title),
+    el("div", { class: "w" }, [...e.leaders, ...e.countries].map(nameOf).join(", ")),
+    el("p", {}, e.note),
+    el("div", { class: "ref" }, e.refs.map(refLabel).join("; "))))));
+}
+
+// theme toggle (per-viewer convenience)
+const themeBtn = document.getElementById("theme");
+try { const t = localStorage.getItem("cw-theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+themeBtn.onclick = () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("cw-theme", document.documentElement.dataset.theme); } catch {}
+};
+
+/* ======================================================================== boot */
+async function boot() {
+  const raw = await fetch(DATA_URL).then(r => { if (!r.ok) throw new Error(r.status + " " + DATA_URL); return r.json(); });
+  DATA = normalise(raw);
+  SEARCH = searchIndex();
+  document.getElementById("legend").replaceChildren(...DATA.regions.map(r => el("span", { class: "r-" + r.id }, el("i"), r.label)));
+  initLens();
+  await document.fonts.load(`${CFG.label.size}px "xkcd Script"`).catch(() => {});
+  widthCache.clear();
+  svg.call(zoom).on("dblclick.zoom", null);
+  resize();
+  const v = new URLSearchParams(location.search).get("view");
+  if (v === "leaders") document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.view === v)));
+  if (v === "leaders") state.view = v;
+  state.L = currentLayout();
+  new ResizeObserver(() => { resize(); schedule(true); }).observe(document.getElementById("chart"));
+  if (baseW > plotW()) svg.call(zoom.transform, d3.zoomIdentity.translate(-baseX(1938), 0));
+  render(true);
+}
+boot().catch(err => {
+  document.getElementById("chart").append(el("p", { style: "padding:24px" }, "Could not load the chart data: " + err.message));
+  console.error(err);
+});
+</script>
+</body>
+</html>
