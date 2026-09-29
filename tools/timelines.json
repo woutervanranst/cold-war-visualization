@@ -1,0 +1,1932 @@
+{
+ "countries": {
+  "us": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Already a continent-spanning empire in the 1890s, closing fast on Europe's leading powers.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    }
+   ]
+  },
+  "cu": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "A Spanish colony until 1898, then under American control and counterinsurgency.",
+     "ref": {
+      "ch": 0,
+      "p": 7
+     }
+    },
+    {
+     "from": "1902-05",
+     "band": "west",
+     "note": "Formally independent, yet under heavy American control and repeated US occupation.",
+     "ref": {
+      "ch": 13,
+      "p": 340
+     }
+    },
+    {
+     "from": "1959-01",
+     "band": "nonaligned",
+     "note": "Castro's radical nationalist revolution takes power, at first courting US investors and not yet Soviet-aligned.",
+     "ref": {
+      "ch": 11,
+      "p": 298
+     }
+    },
+    {
+     "from": "1960-02",
+     "band": "east",
+     "note": "As ties with Washington collapse, Castro turns to Moscow; Mikoyan's visit brings Soviet credits and an oil-for-sugar deal.",
+     "ref": {
+      "ch": 11,
+      "p": 300
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "indep-communist",
+     "note": "Its Soviet patron disappears as the USSR is dissolved.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "cl": {
+   "segments": [
+    {
+     "from": "1964-09",
+     "band": "west",
+     "note": "A CIA-funded campaign elects Frei over Allende; Chile stays in the US orbit, though Frei is no pliant ally.",
+     "ref": {
+      "ch": 13,
+      "p": 355
+     }
+    },
+    {
+     "from": "1970-11",
+     "band": "nonaligned",
+     "note": "Allende's Socialist-Communist coalition seeks a peaceful road to socialism; Moscow funds it but doubts it will survive.",
+     "ref": {
+      "ch": 13,
+      "p": 355
+     }
+    },
+    {
+     "from": "1973-09",
+     "band": "west",
+     "note": "Pinochet's coup brings a fiercely anti-Communist dictatorship that Washington quickly offers to help.",
+     "ref": {
+      "ch": 13,
+      "p": 357
+     }
+    }
+   ]
+  },
+  "ni": {
+   "segments": [
+    {
+     "from": "1936",
+     "band": "west",
+     "note": "Until 1979 Nicaragua is run by a deeply unpopular dictatorship propped up by the United States.",
+     "ref": {
+      "ch": 18,
+      "p": 498
+     }
+    },
+    {
+     "from": "1979-07",
+     "band": "east",
+     "note": "The victorious Sandinistas look to Havana and the Soviet camp for close partnership.",
+     "ref": {
+      "ch": 18,
+      "p": 498
+     }
+    },
+    {
+     "from": "1990-02",
+     "band": "west",
+     "note": "The regional peace plan brings free elections in 1990, ending the Sandinistas' Soviet-leaning rule.",
+     "ref": {
+      "ch": 21,
+      "p": 570
+     }
+    }
+   ]
+  },
+  "gt": {
+   "segments": [
+    {
+     "from": "1951-03",
+     "band": "nonaligned",
+     "note": "Árbenz's elected reformist government, tolerated by local Communists, pursues land reform against US company interests.",
+     "ref": {
+      "ch": 13,
+      "p": 345
+     }
+    },
+    {
+     "from": "1954-06",
+     "band": "west",
+     "note": "A CIA-organized invasion topples Árbenz; US-blessed military juntas take over and reverse his reforms.",
+     "ref": {
+      "ch": 13,
+      "p": 346
+     }
+    }
+   ]
+  },
+  "ar": {
+   "segments": [
+    {
+     "from": "1941-12",
+     "band": "nonaligned",
+     "note": "Argentina refuses to side with the Allies; Washington embargoes it and breaks relations in 1944.",
+     "ref": {
+      "ch": 13,
+      "p": 344
+     }
+    },
+    {
+     "from": "1976-03",
+     "band": "west",
+     "note": "The Videla junta casts its dirty war as a front in the global anti-Communist struggle, confident of US ties.",
+     "ref": {
+      "ch": 13,
+      "p": 357
+     }
+    }
+   ]
+  },
+  "uk": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Britain sits atop the late-1800s world order, resented as a rival by rising Russia and America.",
+     "ref": {
+      "ch": 0,
+      "p": 16
+     }
+    }
+   ]
+  },
+  "fr": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "France, holder of a huge overseas empire, is one of Europe's leading imperial powers.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    }
+   ]
+  },
+  "de": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Bismarck's unified German state is strengthening its place in Europe's great-power system.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1933-01",
+     "band": "axis",
+     "note": "Hitler takes power and turns Germany into a one-party Nazi dictatorship.",
+     "ref": {
+      "ch": 1,
+      "p": 36
+     }
+    },
+    {
+     "from": "1945-05",
+     "band": "nonaligned",
+     "note": "After unconditional surrender, defeated Germany is placed under Allied occupation zones.",
+     "ref": {
+      "ch": 2,
+      "p": 58
+     }
+    },
+    {
+     "from": "1948-06",
+     "band": "west",
+     "note": "Currency reform and Marshall aid tie the western zones to the US-led economy, splitting them from the Soviet zone.",
+     "ref": {
+      "ch": 4,
+      "p": 111
+     }
+    }
+   ]
+  },
+  "it": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "One of Europe's established monarchies of the imperial era; its king is killed by an anarchist in 1900.",
+     "ref": {
+      "ch": 0,
+      "p": 11
+     }
+    },
+    {
+     "from": "1922-10",
+     "band": "axis",
+     "note": "Mussolini's Fascists make Italy a one-party state, a collectivist rival to liberal capitalism.",
+     "ref": {
+      "ch": 1,
+      "p": 36
+     }
+    },
+    {
+     "from": "1943-09",
+     "band": "west",
+     "note": "Allied landings knock Italy out of the Axis, and it changes sides.",
+     "ref": {
+      "ch": 2,
+      "p": 49
+     }
+    }
+   ]
+  },
+  "pt": {
+   "segments": [
+    {
+     "from": "1939-09",
+     "band": "nonaligned",
+     "note": "Salazar's authoritarian Portugal stays neutral in the war, which lets the regime outlive 1945.",
+     "ref": {
+      "ch": 3,
+      "p": 73
+     }
+    },
+    {
+     "from": "1949-04",
+     "band": "west",
+     "note": "Authoritarian Portugal, no wartime ally, is admitted to NATO because of its Atlantic island bases.",
+     "ref": {
+      "ch": 4,
+      "p": 118
+     }
+    }
+   ]
+  },
+  "gr": {
+   "segments": [
+    {
+     "from": "1944-10",
+     "band": "west",
+     "note": "As the Germans withdraw, Britain installs a coalition government and later bombs Communist positions in Athens.",
+     "ref": {
+      "ch": 3,
+      "p": 75
+     }
+    }
+   ]
+  },
+  "su": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Tsarist Russia, a vast land empire built by conquest, ranks among the great powers of the imperial age.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1917-11",
+     "band": "east",
+     "note": "The Bolshevik seizure of power creates a Soviet state that defies the capitalist world.",
+     "ref": {
+      "ch": 1,
+      "p": 27
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "nonaligned",
+     "note": "The USSR is dissolved; Yeltsin's Russia and the other republics emerge as separate states, and the Soviet camp is gone.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "pl": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Parts of Poland have been under Russian imperial rule since the eighteenth century.",
+     "ref": {
+      "ch": 3,
+      "p": 82
+     }
+    },
+    {
+     "from": "1918-11",
+     "band": "west",
+     "note": "A reborn Poland beats back the Red Army and later relies on defense pacts with Britain and France.",
+     "ref": {
+      "ch": 1,
+      "p": 33
+     }
+    },
+    {
+     "from": "1945-01",
+     "band": "east",
+     "note": "Moscow sets up a provisional government in Warsaw, bypassing the London exiles; Communists run it under Soviet tutelage.",
+     "ref": {
+      "ch": 3,
+      "p": 83
+     }
+    },
+    {
+     "from": "1989-08",
+     "band": "west",
+     "note": "Solidarity's Mazowiecki forms a non-Communist government and Moscow accepts it, ending Poland's place in the Soviet bloc.",
+     "ref": {
+      "ch": 22,
+      "p": 588
+     }
+    }
+   ]
+  },
+  "cs": {
+   "segments": [
+    {
+     "from": "1918-10",
+     "band": "west",
+     "note": "The interwar republic looks to Britain and France, who then abandon it to Germany in 1938.",
+     "ref": {
+      "ch": 3,
+      "p": 95
+     }
+    },
+    {
+     "from": "1945-05",
+     "band": "nonaligned",
+     "note": "Freed from German occupation and run by a coalition, Czechoslovakia is not yet assumed to be in Moscow's sphere.",
+     "ref": {
+      "ch": 3,
+      "p": 96
+     }
+    },
+    {
+     "from": "1948-02",
+     "band": "east",
+     "note": "Communists force President Beneš to appoint a government entirely under their control.",
+     "ref": {
+      "ch": 3,
+      "p": 95
+     }
+    },
+    {
+     "from": "1989-12",
+     "band": "west",
+     "note": "The velvet revolution brings multiparty democracy and the dissident Havel to the presidency.",
+     "ref": {
+      "ch": 22,
+      "p": 595
+     }
+    }
+   ],
+   "end": "1993-01"
+  },
+  "hu": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Before 1918 Hungary is a core part of Austria-Hungary, the empire dominating central Europe.",
+     "ref": {
+      "ch": 3,
+      "p": 85
+     }
+    },
+    {
+     "from": "1918-11",
+     "band": "nonaligned",
+     "note": "Austria-Hungary disintegrates at war's end, leaving Hungary a separate, weakened state.",
+     "ref": {
+      "ch": 1,
+      "p": 25
+     }
+    },
+    {
+     "from": "1941-06",
+     "band": "axis",
+     "note": "Hungarian forces join the German assault on the USSR.",
+     "ref": {
+      "ch": 2,
+      "p": 45
+     }
+    },
+    {
+     "from": "1945-02",
+     "band": "east",
+     "note": "After the siege of Budapest, Hungary falls under Red Army occupation and Soviet political direction.",
+     "ref": {
+      "ch": 3,
+      "p": 85
+     }
+    },
+    {
+     "from": "1989-10",
+     "band": "west",
+     "note": "Hungary dissolves its Communist Party and people's republic and schedules free elections, with Moscow's blessing.",
+     "ref": {
+      "ch": 22,
+      "p": 594
+     }
+    }
+   ]
+  },
+  "gdr": {
+   "segments": [
+    {
+     "from": "1949-10",
+     "band": "east",
+     "note": "Moscow and the German Communists create the GDR inside the Soviet occupation zone.",
+     "ref": {
+      "ch": 7,
+      "p": 192
+     }
+    }
+   ],
+   "end": "1990-10"
+  },
+  "yu": {
+   "segments": [
+    {
+     "from": "1944-10",
+     "band": "east",
+     "note": "Welcomed as liberators, the Soviets back Communist-held Yugoslavia, which stays loyal to Moscow through 1947.",
+     "ref": {
+      "ch": 3,
+      "p": 76
+     }
+    },
+    {
+     "from": "1948-06",
+     "band": "indep-communist",
+     "note": "Expelled from the Cominform, Tito defies Stalin and his regime survives outside the Soviet bloc.",
+     "ref": {
+      "ch": 4,
+      "p": 124
+     }
+    }
+   ],
+   "end": "1991-06"
+  },
+  "ro": {
+   "segments": [
+    {
+     "from": "1918-12",
+     "band": "west",
+     "note": "Enlarged after 1918 and tied to Britain and France; it helps crush Hungary’s Communists in 1919.",
+     "ref": {
+      "ch": 1,
+      "p": 33
+     }
+    },
+    {
+     "from": "1941-06",
+     "band": "axis",
+     "note": "Romanian troops fight alongside Germany in the invasion of the Soviet Union.",
+     "ref": {
+      "ch": 2,
+      "p": 45
+     }
+    },
+    {
+     "from": "1944-08",
+     "band": "east",
+     "note": "Romania switches sides late; a million Red Army troops take full military control.",
+     "ref": {
+      "ch": 3,
+      "p": 81
+     }
+    },
+    {
+     "from": "1968-08",
+     "band": "indep-communist",
+     "note": "Nominally in the Warsaw Pact, Ceauşescu's Romania condemns the Czechoslovak invasion and flaunts its independence from Moscow.",
+     "ref": {
+      "ch": 22,
+      "p": 597
+     }
+    },
+    {
+     "from": "1989-12",
+     "band": "west",
+     "note": "Ceauşescu's violent overthrow and execution finish Communist rule in Romania.",
+     "ref": {
+      "ch": 22,
+      "p": 598
+     }
+    }
+   ]
+  },
+  "baltics": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "The Baltic lands are provinces of the Tsarist empire until its collapse.",
+     "ref": {
+      "ch": 1,
+      "p": 33
+     }
+    },
+    {
+     "from": "1918-11",
+     "band": "nonaligned",
+     "note": "The Baltic republics break away from the old empire; Poland's 1920 victory secures their independence.",
+     "ref": {
+      "ch": 1,
+      "p": 33
+     }
+    },
+    {
+     "from": "1940-06",
+     "band": "east",
+     "note": "The Nazi-Soviet pact lets Stalin occupy and absorb the Baltic states.",
+     "ref": {
+      "ch": 1,
+      "p": 40
+     }
+    },
+    {
+     "from": "1991-08",
+     "band": "west",
+     "note": "Estonia, Latvia and Lithuania restore full independence during the failed Moscow coup.",
+     "ref": {
+      "ch": 22,
+      "p": 613
+     }
+    }
+   ]
+  },
+  "cn": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Westad counts China's subjugation among Europe's imperial feats; the Boxers later rise against foreign influence.",
+     "ref": {
+      "ch": 0,
+      "p": 8
+     }
+    },
+    {
+     "from": "1941-12",
+     "band": "west",
+     "note": "Fighting Japan, Nationalist China becomes a US ally and one of the five veto powers of the new UN.",
+     "ref": {
+      "ch": 2,
+      "p": 66
+     }
+    },
+    {
+     "from": "1949-10",
+     "band": "east",
+     "note": "Mao proclaims the People's Republic and immediately seeks a formal pact with Moscow.",
+     "ref": {
+      "ch": 5,
+      "p": 143
+     }
+    },
+    {
+     "from": "1960-07",
+     "band": "indep-communist",
+     "note": "Khrushchev recalls Soviet experts; Mao embraces the break and China becomes a Communist power standing alone.",
+     "ref": {
+      "ch": 9,
+      "p": 247
+     }
+    }
+   ]
+  },
+  "tw": {
+   "segments": [
+    {
+     "from": "1949-12",
+     "band": "west",
+     "note": "Chiang's defeated Nationalists retreat to the island, keeping an anti-Communist Chinese government alive.",
+     "ref": {
+      "ch": 5,
+      "p": 143
+     }
+    }
+   ]
+  },
+  "jp": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "west",
+     "note": "Japan is building up its position in East Asia and defeats Russia in 1905 with British backing.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1937-07",
+     "band": "axis",
+     "note": "Waging war on China since 1937 and allied with Germany, Japan belongs to the Axis camp.",
+     "ref": {
+      "ch": 2,
+      "p": 47
+     }
+    },
+    {
+     "from": "1945-09",
+     "band": "west",
+     "note": "Sole US occupation under MacArthur, excluding the Soviets, sets out to remake Japan as a dependable American ally.",
+     "ref": {
+      "ch": 5,
+      "p": 135
+     }
+    }
+   ]
+  },
+  "kr": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "nonaligned",
+     "note": "Korea is an old kingdom long bound to Qing China.",
+     "ref": {
+      "ch": 6,
+      "p": 159
+     }
+    },
+    {
+     "from": "1910-08",
+     "band": "colonized",
+     "note": "Dominant since China's 1895 defeat, Japan annexes Korea outright and tries to stamp out Korean identity.",
+     "ref": {
+      "ch": 6,
+      "p": 159
+     }
+    },
+    {
+     "from": "1945-09",
+     "band": "west",
+     "note": "US forces occupy the south and come to rely on Syngman Rhee.",
+     "ref": {
+      "ch": 6,
+      "p": 163
+     }
+    }
+   ]
+  },
+  "kp": {
+   "segments": [
+    {
+     "from": "1945-08",
+     "band": "east",
+     "note": "The Red Army occupies the north above the 38th parallel and picks Kim Il-sung to lead it.",
+     "ref": {
+      "ch": 6,
+      "p": 163
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "indep-communist",
+     "note": "Its Soviet patron disappears as the USSR is dissolved.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "in": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Under British rule; the Indian National Congress is among the first anticolonial organizations.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1947-08",
+     "band": "nonaligned",
+     "note": "Freed from British rule, Nehru's India styles itself anticolonial, socialist and outside both power blocs.",
+     "ref": {
+      "ch": 16,
+      "p": 423
+     }
+    }
+   ]
+  },
+  "pk": {
+   "segments": [
+    {
+     "from": "1947-08",
+     "band": "nonaligned",
+     "note": "Partition creates Pakistan as a separate Muslim state, immediately at odds with India over Kashmir.",
+     "ref": {
+      "ch": 16,
+      "p": 425
+     }
+    },
+    {
+     "from": "1954-05",
+     "band": "west",
+     "note": "Pakistan courts Washington; a 1954 military aid pact, then SEATO and the Baghdad Pact, bind it to the West.",
+     "ref": {
+      "ch": 16,
+      "p": 426
+     }
+    }
+   ]
+  },
+  "id": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "The Dutch East Indies, a colony pieced together by the Netherlands during the 1800s.",
+     "ref": {
+      "ch": 5,
+      "p": 130
+     }
+    },
+    {
+     "from": "1945-08",
+     "band": "nonaligned",
+     "note": "Sukarno proclaims an independent Indonesia; four years of struggle against the returning Dutch follow.",
+     "ref": {
+      "ch": 5,
+      "p": 147
+     }
+    },
+    {
+     "from": "1965-10",
+     "band": "west",
+     "note": "The army crushes the PKI and sidelines Sukarno, opening three decades of right-wing, US-friendly rule.",
+     "ref": {
+      "ch": 12,
+      "p": 329
+     }
+    }
+   ]
+  },
+  "vn": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Part of French-colonized Southeast Asia at the height of European dominance.",
+     "ref": {
+      "ch": 0,
+      "p": 8
+     }
+    },
+    {
+     "from": "1945-09",
+     "band": "indep-communist",
+     "note": "Ho's Communist-led Viet Minh proclaims independence and soon fights the returning French while still courting Washington.",
+     "ref": {
+      "ch": 5,
+      "p": 149
+     }
+    },
+    {
+     "from": "1950-01",
+     "band": "east",
+     "note": "As the Korean War rages, Chinese Communist aid to the Viet Minh becomes plain.",
+     "ref": {
+      "ch": 5,
+      "p": 150
+     }
+    },
+    {
+     "from": "1991-11",
+     "band": "indep-communist",
+     "note": "Out of Cambodia, Vietnam normalizes ties with China and joins ASEAN's amity treaty, a Communist state without a Soviet patron.",
+     "ref": {
+      "ch": 21,
+      "p": 563
+     }
+    }
+   ]
+  },
+  "vns": {
+   "segments": [
+    {
+     "from": "1954-07",
+     "band": "west",
+     "note": "The Geneva settlement leaves a separate southern state that soon leans entirely on American aid.",
+     "ref": {
+      "ch": 12,
+      "p": 315
+     }
+    }
+   ],
+   "end": "1975-04"
+  },
+  "kh": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Part of French Indochina.",
+     "ref": {
+      "ch": 5,
+      "p": 147
+     }
+    },
+    {
+     "from": "1953-11",
+     "band": "nonaligned",
+     "note": "Independent under its king, Sihanouk, who tries to keep the country out of the Indochina wars.",
+     "ref": {
+      "ch": 15,
+      "p": 406
+     }
+    },
+    {
+     "from": "1970-03",
+     "band": "west",
+     "note": "With Sihanouk ousted and exiled in Beijing, US and South Vietnamese forces strike into Cambodia.",
+     "ref": {
+      "ch": 15,
+      "p": 406
+     }
+    },
+    {
+     "from": "1975-04",
+     "band": "indep-communist",
+     "note": "The Maoist-inspired Khmer Rouge seize Cambodia and pursue autarky and mass murder, loosely tied to China, not Moscow.",
+     "ref": {
+      "ch": 18,
+      "p": 480
+     }
+    },
+    {
+     "from": "1979-01",
+     "band": "east",
+     "note": "Vietnam's invasion topples Pol Pot and installs a pro-Hanoi regime in Cambodia.",
+     "ref": {
+      "ch": 18,
+      "p": 490
+     }
+    },
+    {
+     "from": "1991-10",
+     "band": "nonaligned",
+     "note": "With outside backing for both sides running out, the Cambodian war ends in a 1991 settlement.",
+     "ref": {
+      "ch": 21,
+      "p": 562
+     }
+    }
+   ]
+  },
+  "af": {
+   "segments": [
+    {
+     "from": "1978-04",
+     "band": "east",
+     "note": "A Marxist military coup brings Afghan Communists to power, working closely with Soviet advisers.",
+     "ref": {
+      "ch": 18,
+      "p": 494
+     }
+    },
+    {
+     "from": "1992-04",
+     "band": "nonaligned",
+     "note": "The Communist regime falls as mujahedin factions storm Kabul and turn their guns on each other.",
+     "ref": {
+      "ch": 21,
+      "p": 577
+     }
+    },
+    {
+     "from": "2001-10",
+     "band": "colonized",
+     "note": "Westad calls the post-9/11 US occupation the making of a twenty-first-century colony under an unwilling great power.",
+     "ref": {
+      "ch": 23,
+      "p": 618
+     }
+    }
+   ]
+  },
+  "eg": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Part of the Arab world subjugated by Europe; Egypt is under British occupation.",
+     "ref": {
+      "ch": 0,
+      "p": 8
+     }
+    },
+    {
+     "from": "1952-07",
+     "band": "nonaligned",
+     "note": "The Free Officers topple the king; Nasser practises a nonalignment that leans ever more on Soviet aid.",
+     "ref": {
+      "ch": 17,
+      "p": 453
+     }
+    },
+    {
+     "from": "1967-06",
+     "band": "east",
+     "note": "After the 1967 defeat, Soviet rearmament and thousands of Soviet military personnel make Egypt Moscow's nearest non-Warsaw Pact ally.",
+     "ref": {
+      "ch": 17,
+      "p": 462
+     }
+    },
+    {
+     "from": "1972-07",
+     "band": "nonaligned",
+     "note": "Sadat expels many Soviet advisers and quietly opens channels to Washington.",
+     "ref": {
+      "ch": 17,
+      "p": 463
+     }
+    },
+    {
+     "from": "1974-01",
+     "band": "west",
+     "note": "After the October War, Sadat's Egypt defects to the American side in search of a US-brokered peace.",
+     "ref": {
+      "ch": 17,
+      "p": 469
+     }
+    }
+   ]
+  },
+  "il": {
+   "segments": [
+    {
+     "from": "1948-05",
+     "band": "nonaligned",
+     "note": "Both superpowers back Israel's creation; Moscow even hopes the new state might lean its way.",
+     "ref": {
+      "ch": 17,
+      "p": 451
+     }
+    },
+    {
+     "from": "1956-10",
+     "band": "west",
+     "note": "Ben-Gurion sides fully with Britain and France at Suez, then moves closer to Washington.",
+     "ref": {
+      "ch": 17,
+      "p": 457
+     }
+    }
+   ]
+  },
+  "ir": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "nonaligned",
+     "note": "Independent but pressed by empires; its elites, like those of China and Japan, hope to build a modern industrial state.",
+     "ref": {
+      "ch": 0,
+      "p": 9
+     }
+    },
+    {
+     "from": "1941-08",
+     "band": "colonized",
+     "note": "British and Soviet forces occupy Iran, the Soviets holding the north, to secure oil and block Germany.",
+     "ref": {
+      "ch": 5,
+      "p": 153
+     }
+    },
+    {
+     "from": "1946-12",
+     "band": "west",
+     "note": "After US pressure forces a Soviet pullout, Tehran retakes the north and crushes Soviet-backed separatists.",
+     "ref": {
+      "ch": 5,
+      "p": 154
+     }
+    },
+    {
+     "from": "1951-05",
+     "band": "nonaligned",
+     "note": "Mossadegh's nationalist government, anti-Soviet but defiant of Britain, takes over the oil industry.",
+     "ref": {
+      "ch": 10,
+      "p": 268
+     }
+    },
+    {
+     "from": "1953-08",
+     "band": "west",
+     "note": "After the CIA-British coup the Shah rules for twenty-six years as a close American ally.",
+     "ref": {
+      "ch": 10,
+      "p": 269
+     }
+    },
+    {
+     "from": "1979-02",
+     "band": "nonaligned",
+     "note": "Khomeini's Islamic republic deliberately turns its back on both East and West.",
+     "ref": {
+      "ch": 18,
+      "p": 493
+     }
+    }
+   ]
+  },
+  "iq": {
+   "segments": [
+    {
+     "from": "1920",
+     "band": "colonized",
+     "note": "Carved from the Ottoman lands and run as a British-dominated client state.",
+     "ref": {
+      "ch": 17,
+      "p": 449
+     }
+    },
+    {
+     "from": "1955-02",
+     "band": "west",
+     "note": "Monarchist Iraq is a US ally and a pillar of the Baghdad Pact security system.",
+     "ref": {
+      "ch": 17,
+      "p": 455
+     }
+    },
+    {
+     "from": "1958-07",
+     "band": "east",
+     "note": "The bloody 1958 revolution turns Iraq from a key US ally into a partner of Nasser and Moscow.",
+     "ref": {
+      "ch": 17,
+      "p": 455
+     }
+    },
+    {
+     "from": "1963-02",
+     "band": "nonaligned",
+     "note": "Qasim is overthrown and killed; anti-Communist Ba'athists rise despite Soviet disapproval.",
+     "ref": {
+      "ch": 17,
+      "p": 458
+     }
+    },
+    {
+     "from": "1972-04",
+     "band": "east",
+     "note": "Ba'athist Iraq, soon dominated by Saddam Hussein, relies on Soviet and East European security and economic aid.",
+     "ref": {
+      "ch": 17,
+      "p": 469
+     }
+    },
+    {
+     "from": "1980-09",
+     "band": "nonaligned",
+     "note": "Saddam's Iraq attacks Iran over Soviet objections; Washington, more worried about Iran, tilts quietly toward Baghdad.",
+     "ref": {
+      "ch": 21,
+      "p": 565
+     }
+    },
+    {
+     "from": "2003-04",
+     "band": "colonized",
+     "note": "The US occupation of Iraq is, for Westad, the second such colony created by Bush's lashing out.",
+     "ref": {
+      "ch": 23,
+      "p": 618
+     }
+    }
+   ]
+  },
+  "sy": {
+   "segments": [
+    {
+     "from": "1920",
+     "band": "colonized",
+     "note": "Placed under French control after the Ottoman collapse.",
+     "ref": {
+      "ch": 17,
+      "p": 449
+     }
+    },
+    {
+     "from": "1946-04",
+     "band": "nonaligned",
+     "note": "French control fades and Arab nationalists come to dominate Syrian politics.",
+     "ref": {
+      "ch": 17,
+      "p": 450
+     }
+    },
+    {
+     "from": "1966-02",
+     "band": "east",
+     "note": "Moscow embraces the radical Ba'athist regime in Damascus and expands arms deliveries.",
+     "ref": {
+      "ch": 17,
+      "p": 459
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "nonaligned",
+     "note": "Its Soviet patron disappears as the USSR is dissolved.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "dz": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "French North Africa, where jihadist peasant movements resist Western rule.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1962-07",
+     "band": "nonaligned",
+     "note": "The FLN takes power as a radical anticolonial regime meant to embody the Third World.",
+     "ref": {
+      "ch": 10,
+      "p": 277
+     }
+    }
+   ]
+  },
+  "gh": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "The Gold Coast, a British colony.",
+     "ref": {
+      "ch": 10,
+      "p": 277
+     }
+    },
+    {
+     "from": "1957-03",
+     "band": "nonaligned",
+     "note": "Independent under Nkrumah, Ghana joins the Third World camp while seeking Soviet cooperation.",
+     "ref": {
+      "ch": 10,
+      "p": 277
+     }
+    },
+    {
+     "from": "1966-02",
+     "band": "west",
+     "note": "Officers who topple Nkrumah set up a military regime closely tied to the United States.",
+     "ref": {
+      "ch": 12,
+      "p": 324
+     }
+    }
+   ]
+  },
+  "cd": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Belgian-ruled Congo, prized for its minerals.",
+     "ref": {
+      "ch": 10,
+      "p": 267
+     }
+    },
+    {
+     "from": "1960-06",
+     "band": "nonaligned",
+     "note": "Independence under Lumumba, a radical nationalist distrusted by Washington and Brussels.",
+     "ref": {
+      "ch": 10,
+      "p": 282
+     }
+    },
+    {
+     "from": "1960-09",
+     "band": "west",
+     "note": "After the army ousts Lumumba, Congo falls under a US-supported military dictatorship.",
+     "ref": {
+      "ch": 10,
+      "p": 283
+     }
+    }
+   ]
+  },
+  "ao": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "A Portuguese colony.",
+     "ref": {
+      "ch": 18,
+      "p": 482
+     }
+    },
+    {
+     "from": "1975-11",
+     "band": "east",
+     "note": "The MPLA proclaims a People's Republic, secured by Cuban troops and Soviet arms and advisers.",
+     "ref": {
+      "ch": 18,
+      "p": 483
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "nonaligned",
+     "note": "Its Soviet patron disappears as the USSR is dissolved.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "et": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "nonaligned",
+     "note": "An independent empire, one of very few African states never colonised for long.",
+     "ref": {
+      "ch": 10,
+      "p": 285
+     }
+    },
+    {
+     "from": "1977-02",
+     "band": "east",
+     "note": "Mengistu's Dergue courts the Soviet bloc; by 1977 Moscow arms it and Cuba sends advisers, then troops.",
+     "ref": {
+      "ch": 18,
+      "p": 488
+     }
+    },
+    {
+     "from": "1991-12",
+     "band": "nonaligned",
+     "note": "Its Soviet patron disappears as the USSR is dissolved.",
+     "ref": {
+      "ch": 22,
+      "p": 614
+     }
+    }
+   ]
+  },
+  "za": {
+   "segments": [
+    {
+     "from": "1890",
+     "band": "colonized",
+     "note": "Under British and settler rule; the African National Congress soon emerges as an early anticolonial body.",
+     "ref": {
+      "ch": 0,
+      "p": 14
+     }
+    },
+    {
+     "from": "1910-05",
+     "band": "west",
+     "note": "A self-governing, white-ruled dominion inside the British empire; later a firm anti-Communist partner of the West.",
+     "ref": {
+      "ch": 6,
+      "p": 177
+     }
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "wilson": {
+   "role": "US president",
+   "terms": [
+    [
+     "1913-03",
+     "1921-03"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "fdr": {
+   "role": "US president",
+   "terms": [
+    [
+     "1933-03",
+     "1945-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "truman": {
+   "role": "US president",
+   "terms": [
+    [
+     "1945-04",
+     "1953-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "eisenhower": {
+   "role": "US president",
+   "terms": [
+    [
+     "1953-01",
+     "1961-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "jfk": {
+   "role": "US president",
+   "terms": [
+    [
+     "1961-01",
+     "1963-11"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "lbj": {
+   "role": "US president",
+   "terms": [
+    [
+     "1963-11",
+     "1969-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "nixon": {
+   "role": "US president",
+   "terms": [
+    [
+     "1969-01",
+     "1974-08"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "ford": {
+   "role": "US president",
+   "terms": [
+    [
+     "1974-08",
+     "1977-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "carter": {
+   "role": "US president",
+   "terms": [
+    [
+     "1977-01",
+     "1981-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "reagan": {
+   "role": "US president",
+   "terms": [
+    [
+     "1981-01",
+     "1989-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "bush41": {
+   "role": "US president",
+   "terms": [
+    [
+     "1989-01",
+     "1993-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "kissinger": {
+   "role": "US national security adviser, then secretary of state",
+   "terms": [
+    [
+     "1969-01",
+     "1977-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "lenin": {
+   "role": "Bolshevik leader, head of the Soviet government",
+   "terms": [
+    [
+     "1917-11",
+     "1924-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "stalin": {
+   "role": "Soviet leader",
+   "terms": [
+    [
+     "1924-01",
+     "1953-03"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "khrushchev": {
+   "role": "Soviet party leader",
+   "terms": [
+    [
+     "1953-09",
+     "1964-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "brezhnev": {
+   "role": "Soviet party leader",
+   "terms": [
+    [
+     "1964-10",
+     "1982-11"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "gorbachev": {
+   "role": "Soviet party leader, then president",
+   "terms": [
+    [
+     "1985-03",
+     "1991-12"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "yeltsin": {
+   "role": "Russian president",
+   "terms": [
+    [
+     "1991-06",
+     "1999-12"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "churchill": {
+   "role": "British prime minister",
+   "terms": [
+    [
+     "1940-05",
+     "1945-07"
+    ],
+    [
+     "1951-10",
+     "1955-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "attlee": {
+   "role": "British prime minister",
+   "terms": [
+    [
+     "1945-07",
+     "1951-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "thatcher": {
+   "role": "British prime minister",
+   "terms": [
+    [
+     "1979-05",
+     "1990-11"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "degaulle": {
+   "role": "Free French leader, later French president",
+   "terms": [
+    [
+     "1940-06",
+     "1946-01"
+    ],
+    [
+     "1958-06",
+     "1969-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "mitterrand": {
+   "role": "French president",
+   "terms": [
+    [
+     "1981-05",
+     "1995-05"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "hitler": {
+   "role": "German dictator",
+   "terms": [
+    [
+     "1933-01",
+     "1945-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "adenauer": {
+   "role": "West German chancellor",
+   "terms": [
+    [
+     "1949-09",
+     "1963-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "brandt": {
+   "role": "West German foreign minister, then chancellor",
+   "terms": [
+    [
+     "1966-12",
+     "1974-05"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "kohl": {
+   "role": "West German, then German, chancellor",
+   "terms": [
+    [
+     "1982-10",
+     "1998-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "ulbricht": {
+   "role": "East German party leader",
+   "terms": [
+    [
+     "1949-10",
+     "1971-05"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "mussolini": {
+   "role": "Italian dictator",
+   "terms": [
+    [
+     "1922-10",
+     "1945-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "mao": {
+   "role": "Chinese Communist leader",
+   "terms": [
+    [
+     "1935-01",
+     "1976-09"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "zhou": {
+   "role": "Chinese premier",
+   "terms": [
+    [
+     "1949-10",
+     "1976-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "deng": {
+   "role": "Chinese paramount leader",
+   "terms": [
+    [
+     "1978-12",
+     "1997-02"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "chiang": {
+   "role": "Nationalist Chinese leader, then ruler of Taiwan",
+   "terms": [
+    [
+     "1928-10",
+     "1975-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "kim": {
+   "role": "North Korean leader",
+   "terms": [
+    [
+     "1945-10",
+     "1994-07"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "ho": {
+   "role": "Vietnamese Communist leader",
+   "terms": [
+    [
+     "1941-05",
+     "1969-09"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "nehru": {
+   "role": "Indian prime minister",
+   "terms": [
+    [
+     "1947-08",
+     "1964-05"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "indira": {
+   "role": "Indian prime minister",
+   "terms": [
+    [
+     "1966-01",
+     "1977-03"
+    ],
+    [
+     "1980-01",
+     "1984-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "sukarno": {
+   "role": "Indonesian president",
+   "terms": [
+    [
+     "1945-08",
+     "1967-03"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "nasser": {
+   "role": "Egyptian president",
+   "terms": [
+    [
+     "1954-11",
+     "1970-09"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "sadat": {
+   "role": "Egyptian president",
+   "terms": [
+    [
+     "1970-10",
+     "1981-10"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "mossadegh": {
+   "role": "Iranian prime minister",
+   "terms": [
+    [
+     "1951-04",
+     "1953-08"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "khomeini": {
+   "role": "Leader of revolutionary Iran",
+   "terms": [
+    [
+     "1979-02",
+     "1989-06"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "saddam": {
+   "role": "Iraqi leader",
+   "terms": [
+    [
+     "1979-07",
+     "2003-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "benbella": {
+   "role": "Algerian president",
+   "terms": [
+    [
+     "1962-09",
+     "1965-06"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "castro": {
+   "role": "Cuban revolutionary leader",
+   "terms": [
+    [
+     "1959-01",
+     "2008-02"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "allende": {
+   "role": "Chilean president",
+   "terms": [
+    [
+     "1970-11",
+     "1973-09"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "pinochet": {
+   "role": "Chilean dictator",
+   "terms": [
+    [
+     "1973-09",
+     "1990-03"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "nkrumah": {
+   "role": "Ghanaian leader",
+   "terms": [
+    [
+     "1957-03",
+     "1966-02"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "lumumba": {
+   "role": "Congolese prime minister",
+   "terms": [
+    [
+     "1960-06",
+     "1961-01"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "mandela": {
+   "role": "ANC leader, then South African president",
+   "terms": [
+    [
+     "1990-02",
+     "1999-06"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "tito": {
+   "role": "Yugoslav leader",
+   "terms": [
+    [
+     "1944-10",
+     "1980-05"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "nagy": {
+   "role": "Hungarian prime minister",
+   "terms": [
+    [
+     "1953-07",
+     "1955-04"
+    ],
+    [
+     "1956-10",
+     "1956-11"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "dubcek": {
+   "role": "Czechoslovak party leader",
+   "terms": [
+    [
+     "1968-01",
+     "1969-04"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "havel": {
+   "role": "Czech dissident, then president",
+   "terms": [
+    [
+     "1977-01",
+     "2003-02"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "walesa": {
+   "role": "Solidarity leader, then Polish president",
+   "terms": [
+    [
+     "1980-08",
+     "1995-12"
+    ]
+   ],
+   "dateSource": "general"
+  },
+  "ceausescu": {
+   "role": "Romanian party leader",
+   "terms": [
+    [
+     "1965-03",
+     "1989-12"
+    ]
+   ],
+   "dateSource": "general"
+  }
+ },
+ "eventAliases": {
+  "lin-biao-incident-1971": "lin-biao-affair-1971",
+  "helsinki-final-act-1975": "helsinki-accords-1975"
+ }
+}

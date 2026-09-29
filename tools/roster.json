@@ -1,0 +1,898 @@
+{
+  "bands": [
+    {
+      "id": "axis",
+      "desc": "Fascist / Axis camp (Germany, Italy, Japan) in the 1930s until 1945.",
+      "labels": [
+        {
+          "from": 1890,
+          "text": "Axis"
+        }
+      ]
+    },
+    {
+      "id": "west",
+      "desc": "Aligned with the capitalist West / the United States (formal alliance or clear alignment). Before 1917 this band holds the imperial great powers, including Tsarist Russia and Japan.",
+      "labels": [
+        {
+          "from": 1890,
+          "text": "Great powers"
+        },
+        {
+          "from": 1917,
+          "text": "Capitalist powers"
+        },
+        {
+          "from": 1945,
+          "text": "The West"
+        }
+      ]
+    },
+    {
+      "id": "colonized",
+      "desc": "Under colonial rule or foreign imperial control (India before 1947, Vietnam before 1945/54, Algeria before 1962, Korea under Japan...).",
+      "labels": [
+        {
+          "from": 1890,
+          "text": "Colonized"
+        }
+      ]
+    },
+    {
+      "id": "nonaligned",
+      "desc": "Independent and not firmly in either camp: neutral, Non-Aligned Movement, Third World states balancing between the superpowers. After 1991 this holds states outside the Western order.",
+      "labels": [
+        {
+          "from": 1890,
+          "text": "Unaligned"
+        },
+        {
+          "from": 1955,
+          "text": "Non-aligned / Third World"
+        },
+        {
+          "from": 1991,
+          "text": "Everyone else"
+        }
+      ]
+    },
+    {
+      "id": "indep-communist",
+      "desc": "Communist-ruled but outside Soviet control (Yugoslavia after 1948, China after the 1960 split, post-1991 Communist states).",
+      "labels": [
+        {
+          "from": 1890,
+          "text": "Communists on their own"
+        }
+      ]
+    },
+    {
+      "id": "east",
+      "desc": "The Soviet state and the camp it led or that clearly aligned with it (Warsaw Pact, Soviet-backed regimes). Exists from 1917 to 1991.",
+      "labels": [
+        {
+          "from": 1917,
+          "text": "Soviet camp"
+        }
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "id": "americas",
+      "label": "Americas"
+    },
+    {
+      "id": "w-europe",
+      "label": "Western Europe"
+    },
+    {
+      "id": "e-europe",
+      "label": "Russia & Eastern Europe"
+    },
+    {
+      "id": "e-asia",
+      "label": "East Asia"
+    },
+    {
+      "id": "s-asia",
+      "label": "South & Southeast Asia"
+    },
+    {
+      "id": "mideast",
+      "label": "Middle East & North Africa"
+    },
+    {
+      "id": "africa",
+      "label": "Sub-Saharan Africa"
+    }
+  ],
+  "countries": [
+    {
+      "id": "us",
+      "name": "United States",
+      "region": "americas",
+      "terms": [
+        "United States"
+      ],
+      "short": "USA"
+    },
+    {
+      "id": "cu",
+      "name": "Cuba",
+      "region": "americas",
+      "terms": [
+        "Cuba",
+        "Cuban revolution"
+      ]
+    },
+    {
+      "id": "cl",
+      "name": "Chile",
+      "region": "americas",
+      "terms": [
+        "Chile"
+      ]
+    },
+    {
+      "id": "ni",
+      "name": "Nicaragua",
+      "region": "americas",
+      "terms": [
+        "Nicaragua",
+        "Sandinista Front"
+      ]
+    },
+    {
+      "id": "gt",
+      "name": "Guatemala",
+      "region": "americas",
+      "terms": [
+        "Guatemala"
+      ]
+    },
+    {
+      "id": "ar",
+      "name": "Argentina",
+      "region": "americas",
+      "terms": [
+        "Argentina"
+      ]
+    },
+    {
+      "id": "uk",
+      "name": "Britain",
+      "region": "w-europe",
+      "terms": [
+        "Britain"
+      ],
+      "short": "UK"
+    },
+    {
+      "id": "fr",
+      "name": "France",
+      "region": "w-europe",
+      "terms": [
+        "France"
+      ]
+    },
+    {
+      "id": "de",
+      "name": "Germany / West Germany",
+      "region": "w-europe",
+      "terms": [
+        "Germany",
+        "West Germany",
+        "Federal Republic of Germany"
+      ],
+      "short": "W. Germany"
+    },
+    {
+      "id": "it",
+      "name": "Italy",
+      "region": "w-europe",
+      "terms": [
+        "Italy"
+      ]
+    },
+    {
+      "id": "pt",
+      "name": "Portugal",
+      "region": "w-europe",
+      "terms": [
+        "Portugal"
+      ]
+    },
+    {
+      "id": "gr",
+      "name": "Greece",
+      "region": "w-europe",
+      "terms": [
+        "Greece"
+      ]
+    },
+    {
+      "id": "su",
+      "name": "Russia / Soviet Union",
+      "region": "e-europe",
+      "terms": [
+        "Soviet Union",
+        "Russia"
+      ],
+      "short": "USSR"
+    },
+    {
+      "id": "pl",
+      "name": "Poland",
+      "region": "e-europe",
+      "terms": [
+        "Poland"
+      ]
+    },
+    {
+      "id": "cs",
+      "name": "Czechoslovakia",
+      "region": "e-europe",
+      "terms": [
+        "Czechoslovakia"
+      ],
+      "short": "Czechosl."
+    },
+    {
+      "id": "hu",
+      "name": "Hungary",
+      "region": "e-europe",
+      "terms": [
+        "Hungary"
+      ]
+    },
+    {
+      "id": "gdr",
+      "name": "East Germany",
+      "region": "e-europe",
+      "parent": "de",
+      "mergeInto": "de",
+      "terms": [
+        "East Germany",
+        "German Democratic Republic (GDR)"
+      ],
+      "short": "GDR"
+    },
+    {
+      "id": "yu",
+      "name": "Yugoslavia",
+      "region": "e-europe",
+      "terms": [
+        "Yugoslavia"
+      ]
+    },
+    {
+      "id": "ro",
+      "name": "Romania",
+      "region": "e-europe",
+      "terms": [
+        "Romania"
+      ]
+    },
+    {
+      "id": "baltics",
+      "name": "Baltic states",
+      "region": "e-europe",
+      "group": true,
+      "terms": [
+        "Baltic states",
+        "Estonia"
+      ],
+      "short": "Baltics"
+    },
+    {
+      "id": "cn",
+      "name": "China",
+      "region": "e-asia",
+      "terms": [
+        "China",
+        "People’s Republic of China (PRC)"
+      ]
+    },
+    {
+      "id": "tw",
+      "name": "Taiwan",
+      "region": "e-asia",
+      "parent": "cn",
+      "terms": [
+        "Taiwan"
+      ]
+    },
+    {
+      "id": "jp",
+      "name": "Japan",
+      "region": "e-asia",
+      "terms": [
+        "Japan"
+      ]
+    },
+    {
+      "id": "kr",
+      "name": "Korea / South Korea",
+      "region": "e-asia",
+      "terms": [
+        "Korea",
+        "South Korea"
+      ],
+      "short": "S. Korea"
+    },
+    {
+      "id": "kp",
+      "name": "North Korea",
+      "region": "e-asia",
+      "parent": "kr",
+      "terms": [
+        "North Korea"
+      ],
+      "short": "N. Korea"
+    },
+    {
+      "id": "in",
+      "name": "India",
+      "region": "s-asia",
+      "terms": [
+        "India"
+      ]
+    },
+    {
+      "id": "pk",
+      "name": "Pakistan",
+      "region": "s-asia",
+      "parent": "in",
+      "terms": [
+        "Pakistan"
+      ]
+    },
+    {
+      "id": "id",
+      "name": "Indonesia",
+      "region": "s-asia",
+      "terms": [
+        "Indonesia"
+      ]
+    },
+    {
+      "id": "vn",
+      "name": "Vietnam / North Vietnam",
+      "region": "s-asia",
+      "terms": [
+        "Vietnam",
+        "North Vietnam"
+      ],
+      "short": "Vietnam"
+    },
+    {
+      "id": "vns",
+      "name": "South Vietnam",
+      "region": "s-asia",
+      "parent": "vn",
+      "mergeInto": "vn",
+      "terms": [
+        "South Vietnam"
+      ],
+      "short": "S. Vietnam"
+    },
+    {
+      "id": "kh",
+      "name": "Cambodia",
+      "region": "s-asia",
+      "terms": [
+        "Cambodia",
+        "Khmer Rouge"
+      ]
+    },
+    {
+      "id": "af",
+      "name": "Afghanistan",
+      "region": "s-asia",
+      "terms": [
+        "Afghanistan"
+      ]
+    },
+    {
+      "id": "eg",
+      "name": "Egypt",
+      "region": "mideast",
+      "terms": [
+        "Egypt"
+      ]
+    },
+    {
+      "id": "il",
+      "name": "Israel",
+      "region": "mideast",
+      "terms": [
+        "Israel"
+      ]
+    },
+    {
+      "id": "ir",
+      "name": "Iran",
+      "region": "mideast",
+      "terms": [
+        "Iran"
+      ]
+    },
+    {
+      "id": "iq",
+      "name": "Iraq",
+      "region": "mideast",
+      "terms": [
+        "Iraq"
+      ]
+    },
+    {
+      "id": "sy",
+      "name": "Syria",
+      "region": "mideast",
+      "terms": [
+        "Syria"
+      ]
+    },
+    {
+      "id": "dz",
+      "name": "Algeria",
+      "region": "mideast",
+      "terms": [
+        "Algeria"
+      ]
+    },
+    {
+      "id": "gh",
+      "name": "Ghana",
+      "region": "africa",
+      "terms": [
+        "Ghana"
+      ]
+    },
+    {
+      "id": "cd",
+      "name": "Congo",
+      "region": "africa",
+      "terms": [
+        "Congo"
+      ]
+    },
+    {
+      "id": "ao",
+      "name": "Angola",
+      "region": "africa",
+      "terms": [
+        "Angola"
+      ]
+    },
+    {
+      "id": "et",
+      "name": "Ethiopia",
+      "region": "africa",
+      "terms": [
+        "Ethiopia"
+      ]
+    },
+    {
+      "id": "za",
+      "name": "South Africa",
+      "region": "africa",
+      "terms": [
+        "South Africa",
+        "African National Congress",
+        "apartheid"
+      ]
+    }
+  ],
+  "leaders": [
+    {
+      "id": "wilson",
+      "name": "Woodrow Wilson",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Wilson, Woodrow"
+    },
+    {
+      "id": "fdr",
+      "name": "Franklin D. Roosevelt",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Roosevelt, Franklin Delano",
+      "short": "FDR"
+    },
+    {
+      "id": "truman",
+      "name": "Harry Truman",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Truman, Harry"
+    },
+    {
+      "id": "eisenhower",
+      "name": "Dwight Eisenhower",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Eisenhower, Dwight D."
+    },
+    {
+      "id": "jfk",
+      "name": "John F. Kennedy",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Kennedy, John F.",
+      "short": "JFK"
+    },
+    {
+      "id": "lbj",
+      "name": "Lyndon Johnson",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Johnson, Lyndon B.",
+      "short": "LBJ"
+    },
+    {
+      "id": "nixon",
+      "name": "Richard Nixon",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Nixon, Richard"
+    },
+    {
+      "id": "ford",
+      "name": "Gerald Ford",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Ford, Gerald"
+    },
+    {
+      "id": "carter",
+      "name": "Jimmy Carter",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Carter, Jimmy"
+    },
+    {
+      "id": "reagan",
+      "name": "Ronald Reagan",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Reagan, Ronald"
+    },
+    {
+      "id": "bush41",
+      "name": "George H. W. Bush",
+      "country": "us",
+      "seat": "us-pres",
+      "term": "Bush, George H. W.",
+      "short": "Bush"
+    },
+    {
+      "id": "kissinger",
+      "name": "Henry Kissinger",
+      "country": "us",
+      "seat": "us-kissinger",
+      "term": "Kissinger, Henry"
+    },
+    {
+      "id": "lenin",
+      "name": "Vladimir Lenin",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Lenin, Vladimir"
+    },
+    {
+      "id": "stalin",
+      "name": "Joseph Stalin",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Stalin, Joseph"
+    },
+    {
+      "id": "khrushchev",
+      "name": "Nikita Khrushchev",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Khrushchev, Nikita"
+    },
+    {
+      "id": "brezhnev",
+      "name": "Leonid Brezhnev",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Brezhnev, Leonid Illich"
+    },
+    {
+      "id": "gorbachev",
+      "name": "Mikhail Gorbachev",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Gorbachev, Mikhail Sergeevich"
+    },
+    {
+      "id": "yeltsin",
+      "name": "Boris Yeltsin",
+      "country": "su",
+      "seat": "su-top",
+      "term": "Yeltsin, Boris"
+    },
+    {
+      "id": "churchill",
+      "name": "Winston Churchill",
+      "country": "uk",
+      "seat": "uk-pm",
+      "term": "Churchill, Winston"
+    },
+    {
+      "id": "attlee",
+      "name": "Clement Attlee",
+      "country": "uk",
+      "seat": "uk-pm",
+      "term": "Attlee, Clement"
+    },
+    {
+      "id": "thatcher",
+      "name": "Margaret Thatcher",
+      "country": "uk",
+      "seat": "uk-pm",
+      "term": "Thatcher, Margaret"
+    },
+    {
+      "id": "degaulle",
+      "name": "Charles de Gaulle",
+      "country": "fr",
+      "seat": "fr-top",
+      "term": "de Gaulle, Charles",
+      "short": "de Gaulle"
+    },
+    {
+      "id": "mitterrand",
+      "name": "François Mitterrand",
+      "country": "fr",
+      "seat": "fr-top",
+      "term": "Mitterand, François"
+    },
+    {
+      "id": "hitler",
+      "name": "Adolf Hitler",
+      "country": "de",
+      "seat": "de-top",
+      "term": "Hitler, Adolf"
+    },
+    {
+      "id": "adenauer",
+      "name": "Konrad Adenauer",
+      "country": "de",
+      "seat": "de-top",
+      "term": "Adenauer, Konrad"
+    },
+    {
+      "id": "brandt",
+      "name": "Willy Brandt",
+      "country": "de",
+      "seat": "de-top",
+      "term": "Brandt, Willy"
+    },
+    {
+      "id": "kohl",
+      "name": "Helmut Kohl",
+      "country": "de",
+      "seat": "de-top",
+      "term": "Kohl, Helmut"
+    },
+    {
+      "id": "ulbricht",
+      "name": "Walter Ulbricht",
+      "country": "gdr",
+      "seat": "gdr-top",
+      "term": "Ulbricht, Walter"
+    },
+    {
+      "id": "mussolini",
+      "name": "Benito Mussolini",
+      "country": "it",
+      "seat": "it-top",
+      "term": "Mussolini, Benito"
+    },
+    {
+      "id": "mao",
+      "name": "Mao Zedong",
+      "country": "cn",
+      "seat": "cn-top",
+      "term": "Mao Zedong",
+      "short": "Mao"
+    },
+    {
+      "id": "zhou",
+      "name": "Zhou Enlai",
+      "country": "cn",
+      "seat": "cn-premier",
+      "term": "Zhou Enlai",
+      "short": "Zhou"
+    },
+    {
+      "id": "deng",
+      "name": "Deng Xiaoping",
+      "country": "cn",
+      "seat": "cn-top",
+      "term": "Deng Xiaoping",
+      "short": "Deng"
+    },
+    {
+      "id": "chiang",
+      "name": "Chiang Kai-shek",
+      "country": "tw",
+      "seat": "tw-top",
+      "term": "Chiang Kai-shek",
+      "short": "Chiang"
+    },
+    {
+      "id": "kim",
+      "name": "Kim Il-sung",
+      "country": "kp",
+      "seat": "kp-top",
+      "term": "Kim Il-sung",
+      "short": "Kim"
+    },
+    {
+      "id": "ho",
+      "name": "Ho Chi Minh",
+      "country": "vn",
+      "seat": "vn-top",
+      "term": "Ho Chi Minh",
+      "short": "Ho"
+    },
+    {
+      "id": "nehru",
+      "name": "Jawaharlal Nehru",
+      "country": "in",
+      "seat": "in-pm",
+      "term": "Nehru, Jawaharal"
+    },
+    {
+      "id": "indira",
+      "name": "Indira Gandhi",
+      "country": "in",
+      "seat": "in-pm",
+      "term": "Gandhi, Indira",
+      "short": "Indira"
+    },
+    {
+      "id": "sukarno",
+      "name": "Sukarno",
+      "country": "id",
+      "seat": "id-top",
+      "term": "Sukarno"
+    },
+    {
+      "id": "nasser",
+      "name": "Gamal Abdel Nasser",
+      "country": "eg",
+      "seat": "eg-top",
+      "term": "Nasser, Gamal Abdel"
+    },
+    {
+      "id": "sadat",
+      "name": "Anwar Sadat",
+      "country": "eg",
+      "seat": "eg-top",
+      "term": "Sadat, Anwar"
+    },
+    {
+      "id": "mossadegh",
+      "name": "Mohammed Mossadegh",
+      "country": "ir",
+      "seat": "ir-top",
+      "term": "Mossadegh, Mohammed"
+    },
+    {
+      "id": "khomeini",
+      "name": "Ayatollah Khomeini",
+      "country": "ir",
+      "seat": "ir-top",
+      "term": "Khomeini, Ayatollah Ruhollah",
+      "short": "Khomeini"
+    },
+    {
+      "id": "saddam",
+      "name": "Saddam Hussein",
+      "country": "iq",
+      "seat": "iq-top",
+      "term": "Hussein, Saddam",
+      "short": "Saddam"
+    },
+    {
+      "id": "benbella",
+      "name": "Ahmed Ben Bella",
+      "country": "dz",
+      "seat": "dz-top",
+      "term": "Ben Bella, Ahmed",
+      "short": "Ben Bella"
+    },
+    {
+      "id": "castro",
+      "name": "Fidel Castro",
+      "country": "cu",
+      "seat": "cu-top",
+      "term": "Castro, Fidel"
+    },
+    {
+      "id": "allende",
+      "name": "Salvador Allende",
+      "country": "cl",
+      "seat": "cl-top",
+      "term": "Allende, Salvador"
+    },
+    {
+      "id": "pinochet",
+      "name": "Augusto Pinochet",
+      "country": "cl",
+      "seat": "cl-top",
+      "term": "Pinochet, Augusto"
+    },
+    {
+      "id": "nkrumah",
+      "name": "Kwame Nkrumah",
+      "country": "gh",
+      "seat": "gh-top",
+      "term": "Nkrumah, Kwame"
+    },
+    {
+      "id": "lumumba",
+      "name": "Patrice Lumumba",
+      "country": "cd",
+      "seat": "cd-top",
+      "term": "Lumumba, Patrice"
+    },
+    {
+      "id": "mandela",
+      "name": "Nelson Mandela",
+      "country": "za",
+      "seat": "za-top",
+      "term": "Mandela, Nelson"
+    },
+    {
+      "id": "tito",
+      "name": "Josip Broz Tito",
+      "country": "yu",
+      "seat": "yu-top",
+      "term": "Tito",
+      "short": "Tito"
+    },
+    {
+      "id": "nagy",
+      "name": "Imre Nagy",
+      "country": "hu",
+      "seat": "hu-top",
+      "term": "Nagy, Imre"
+    },
+    {
+      "id": "dubcek",
+      "name": "Alexander Dubček",
+      "country": "cs",
+      "seat": "cs-top",
+      "term": "Dubcek, Alexander"
+    },
+    {
+      "id": "havel",
+      "name": "Václav Havel",
+      "country": "cs",
+      "seat": "cs-top",
+      "term": "Havel, Václav"
+    },
+    {
+      "id": "walesa",
+      "name": "Lech Wałęsa",
+      "country": "pl",
+      "seat": "pl-top",
+      "term": "Wałesa, Lech"
+    },
+    {
+      "id": "ceausescu",
+      "name": "Nicolae Ceaușescu",
+      "country": "ro",
+      "seat": "ro-top",
+      "term": "Ceauşescu, Nicolae"
+    }
+  ]
+}
