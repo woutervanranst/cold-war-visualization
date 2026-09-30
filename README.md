@@ -13,6 +13,8 @@ An interactive, xkcd-style [narrative chart](https://xkcd.com/657/) of Odd Arne 
 - **Main cast / Full cast**: the main cast is the 20 countries and 22 leaders the book leans on
   most (index references plus the events they take part in, major events counting triple); the
   full cast adds everyone else. Anyone you search for is added back in.
+- The legend under the region colours explains the markers, and the **show** checkboxes at the top
+  hide or show each kind (camp switches, alignment events, major events, other events).
 - Every camp switch has a diamond marker at the bend; hover it for the reason and the key event
   behind it (a hollow diamond marks an alignment event, like India's 1971 treaty with Moscow, that
   doesn't change the country's camp).

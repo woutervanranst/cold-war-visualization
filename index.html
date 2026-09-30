@@ -17,27 +17,6 @@
   --b-indep-communist: #fbe9d8; --b-east: #fbe3e2; --b-edge: rgba(0,0,0,.16);
   --lens: rgba(237,161,0,.13); --squeeze: rgba(0,0,0,.035); --panel: #fbfaf7; --shadow: rgba(0,0,0,.14);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #1b1b1d; --ink: #f1f0ea; --ink-2: #c3c2b7; --muted: #8f8d86; --rule: #3a3a37; --halo: #1b1b1d;
-    --r-americas: #3987e5; --r-w-europe: #008300; --r-e-europe: #e66767; --r-e-asia: #9085e9;
-    --r-s-asia: #d95926; --r-mideast: #199e70; --r-africa: #c98500;
-    --b-west: #1f2939; --b-axis: #2a2724; --b-colonized: #2d291c; --b-nonaligned: #1c2c1f;
-    --b-indep-communist: #32251b; --b-east: #392022; --b-edge: rgba(255,255,255,.14);
-    --lens: rgba(201,133,0,.16); --squeeze: rgba(255,255,255,.035); --panel: #232326; --shadow: rgba(0,0,0,.5);
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper: #1b1b1d; --ink: #f1f0ea; --ink-2: #c3c2b7; --muted: #8f8d86; --rule: #3a3a37; --halo: #1b1b1d;
-  --r-americas: #3987e5; --r-w-europe: #008300; --r-e-europe: #e66767; --r-e-asia: #9085e9;
-  --r-s-asia: #d95926; --r-mideast: #199e70; --r-africa: #c98500;
-  --b-west: #1f2939; --b-axis: #2a2724; --b-colonized: #2d291c; --b-nonaligned: #1c2c1f;
-  --b-indep-communist: #32251b; --b-east: #392022; --b-edge: rgba(255,255,255,.14);
-  --lens: rgba(201,133,0,.16); --squeeze: rgba(255,255,255,.035); --panel: #232326; --shadow: rgba(0,0,0,.5);
-}
-
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { margin: 0; height: 100%; }
@@ -146,6 +125,13 @@ aside#drawer {
 footer { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; padding: 4px 16px 8px; font-size: 12.5px; color: var(--ink-2); }
 .legend { display: flex; flex-wrap: wrap; gap: 2px 12px; }
 .legend span { display: inline-flex; align-items: center; gap: 5px; }
+footer .legend { flex-basis: 100%; }
+.legend.marks { color: var(--ink-2); }
+.legend .hint { margin-left: auto; }
+svg.g { width: 14px; height: 14px; flex: none; overflow: visible; }
+.show { display: inline-flex; align-items: center; gap: 2px 8px; color: var(--ink-2); }
+.show label.check { gap: 3px; }
+.show input { margin: 0; accent-color: var(--ink); }
 .legend i { width: 18px; height: 3px; border-radius: 2px; background: var(--c); display: inline-block; }
 footer .credit { margin-left: auto; color: var(--muted); }
 footer a { color: inherit; }
@@ -158,7 +144,7 @@ footer a { color: inherit; }
   .btn, select, input[type="search"] { padding: 2px 7px; }
   .seg button { padding: 2px 8px; }
   select { max-width: 150px; } input[type="search"] { width: 130px; }
-  .long, .hint { display: none; }
+  .long, .hint, .legend .hint { display: none; }
   .legend { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; }
   .legend span { white-space: nowrap; }
 }
@@ -179,6 +165,13 @@ footer a { color: inherit; }
       <button role="radio" data-cast="main" aria-checked="false" title="Only the countries and leaders the book leans on most">Main cast</button>
       <button role="radio" data-cast="full" aria-checked="true" title="Everyone in the chart">Full cast</button>
     </div>
+    <div class="show" role="group" aria-label="Show markers">
+      <span class="long">show:</span>
+      <label class="check" title="Camp switches: why a country changed camp"><input type="checkbox" data-show="switch" checked><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="M0,-5.5L5.5,0L0,5.5L-5.5,0Z" fill="currentColor"/></svg><span class="long">switches</span></label>
+      <label class="check" title="Alignment events that don't change a country's camp"><input type="checkbox" data-show="align" checked><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="M0,-4.8L4.8,0L0,4.8L-4.8,0Z" fill="var(--paper)" stroke="currentColor" stroke-width="1.8"/></svg><span class="long">alignment</span></label>
+      <label class="check" title="Major events (turning points)"><input type="checkbox" data-show="major" checked><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><circle r="4.3" fill="var(--paper)" stroke="currentColor" stroke-width="2"/></svg><span class="long">major</span></label>
+      <label class="check" title="Other events"><input type="checkbox" data-show="other" checked><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><circle r="2.4" fill="currentColor"/></svg><span class="long">other</span></label>
+    </div>
     <select id="lens" aria-label="Chapter lens"><option value="">All chapters</option></select>
     <div class="search">
       <input id="q" type="search" placeholder="find… Castro, Angola, Yalta" autocomplete="off" aria-label="Find a country, leader or event" aria-controls="suggest" aria-expanded="false">
@@ -188,7 +181,6 @@ footer a { color: inherit; }
     <label class="check" id="onlywrap" hidden><input type="checkbox" id="only"> only these</label>
     <button class="btn" id="reset">reset<span class="long"> zoom</span></button>
     <button class="btn" id="listbtn" aria-expanded="false" aria-controls="drawer">list</button>
-    <button class="btn" id="theme" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
   </div>
 </header>
 <main id="chart">
@@ -201,7 +193,14 @@ footer a { color: inherit; }
 </main>
 <footer>
   <div class="legend" id="legend"></div>
-  <span class="hint">scroll or pinch to zoom · drag to pan · click a line to pin it</span>
+  <div class="legend marks">
+    <span><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="M0,-5.5L5.5,0L0,5.5L-5.5,0Z" fill="currentColor"/></svg>camp switch (hover for why)</span>
+    <span><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="M0,-4.8L4.8,0L0,4.8L-4.8,0Z" fill="var(--paper)" stroke="currentColor" stroke-width="1.8"/></svg>alignment event, same camp</span>
+    <span><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><circle r="4.3" fill="var(--paper)" stroke="currentColor" stroke-width="2"/></svg>major event</span>
+    <span><svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><circle r="2.4" fill="currentColor"/></svg>other event</span>
+    <span><svg class="g" viewBox="-8 -7 16 14" aria-hidden="true"><rect x="-6.5" y="-4" width="13" height="8" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>meeting (Leaders view)</span>
+    <span class="hint">scroll or pinch to zoom · drag to pan · click a line to pin it</span>
+  </div>
   <span class="credit">Source: Odd Arne Westad, <i>The Cold War: A World History</i> (Basic Books, 2017). Notes are paraphrases; pages refer to the print edition.
     Font: <a href="https://github.com/ipython/xkcd-font">xkcd Script</a> (CC BY-NC 3.0). After <a href="https://xkcd.com/657/">xkcd 657</a>.</span>
 </footer>
@@ -579,7 +578,9 @@ function layout(view, only, seedOrder) {
 const state = {
   view: "countries", t: d3.zoomIdentity, L: null, pinned: new Set(), hover: null, hoverEvent: null,
   lens: null, selected: [], only: false, focusEvent: null, cast: "full",
+  show: { switch: true, align: true, major: true, other: true },
 };
+const shownRank = e => (e.rank === 1 ? state.show.major : state.show.other);
 const layoutCache = new Map();
 function currentLayout() {
   // "only these" wins; otherwise the main cast, plus anyone picked in search
@@ -749,7 +750,7 @@ function focusState() {
 function computePinches(L, X, Y, s, qByLine, k) {
   const pinches = [], dotsSkipped = [];
   if (L.view !== "leaders") return { pinches, dotsSkipped };
-  const cands = DATA.events.filter(e => visibleEvent(e, k, "pinch"))
+  const cands = DATA.events.filter(e => visibleEvent(e, k, "pinch") && shownRank(e))
     .sort((a, b) => a.rank - b.rank || a.t - b.t);
   const perLine = new Map(), gutterUse = [];
   for (const e of cands) {
@@ -869,7 +870,7 @@ function render(forceLabels = false) {
       const q = (qByLine.get(ln.id) || []).find(q => x >= q.xs && x <= q.xe);
       return q ? evalPiece(q, x) + wobble(hash(ln.id), x, CFG.wobble.line) : null;
     };
-    for (const ln of L.lines) ln.ent.segs.forEach((sg, j) => {
+    if (state.show.switch) for (const ln of L.lines) ln.ent.segs.forEach((sg, j) => {
       if (j === 0) return;
       const x = X(sg.t);
       if (x < -10 || x > pw + 10) return;
@@ -878,7 +879,7 @@ function render(forceLabels = false) {
       marks.push({ key: `sw:${ln.id}:${j}`, kind: "switch", x, y, ln, seg: sg, prev: ln.ent.segs[j - 1],
         event: sg.cause ? DATA.eventById.get(sg.cause) : null });
     });
-    for (const e of DATA.events) for (const cid of e.shifts) {
+    if (state.show.align) for (const e of DATA.events) for (const cid of e.shifts) {
       if (DATA.switchCause.has(e.id + "|" + cid)) continue;
       const i = L.idIndex.get(cid);
       if (i == null || e.t < D0 || e.t > D1) continue;
@@ -900,7 +901,7 @@ function render(forceLabels = false) {
   const skipped = new Set(dotsSkipped.map(e => e.id));
   const pinched = new Set(pinches.flatMap(p => p.events.map(e => e.id)));
   for (const e of DATA.events) {
-    if (pinched.has(e.id)) continue;
+    if (pinched.has(e.id) || !shownRank(e)) continue;
     const lensHit = F.events.has(e.id);
     if (!visibleEvent(e, k, "dot") && !skipped.has(e.id) && !lensHit) continue;
     if (e.t < D0 || e.t > D1) continue;
@@ -1223,6 +1224,11 @@ function setView(v, animate = true) {
   setTimeout(swap, 200);
 }
 
+// which markers show
+document.querySelectorAll("[data-show]").forEach(cb => cb.addEventListener("change", () => {
+  state.show[cb.dataset.show] = cb.checked; schedule(true);
+}));
+
 // main cast / full cast
 function setCast(c) {
   if (c === state.cast) return;
@@ -1329,15 +1335,6 @@ function renderList() {
     el("p", {}, e.note),
     el("div", { class: "ref" }, e.refs.map(refLabel).join("; "))))));
 }
-
-// theme toggle (per-viewer convenience)
-const themeBtn = document.getElementById("theme");
-try { const t = localStorage.getItem("cw-theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
-themeBtn.onclick = () => {
-  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.dataset.theme = dark ? "light" : "dark";
-  try { localStorage.setItem("cw-theme", document.documentElement.dataset.theme); } catch {}
-};
 
 /* ======================================================================== boot */
 async function boot() {
