@@ -94,6 +94,13 @@ main { flex: 1; min-height: 0; position: relative; }
 .r-africa { stroke: var(--r-africa); --c: var(--r-africa); }
 .dot { fill: var(--c, var(--ink)); stroke: var(--paper); stroke-width: 2; }
 .dot.r1 { fill: var(--paper); stroke: var(--c, var(--ink)); stroke-width: 2.2; }
+.dot.quiet { stroke: none; }
+.sw { fill: var(--c, var(--ink)); stroke: var(--paper); stroke-width: 1.6; }
+.al { fill: var(--paper); stroke: var(--c, var(--ink)); stroke-width: 2; }
+.sw.dim, .al.dim { opacity: .14; }
+.sw.focus, .al.focus { stroke-width: 3; }
+#tip .why { margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--rule); }
+#tip .why b { font-weight: normal; }
 .link { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 3; opacity: .45; fill: none; }
 .meet { fill: none; stroke: var(--ink); stroke-width: 1.4; }
 .meet.focus, .dot.focus { stroke-width: 3; }
@@ -215,7 +222,7 @@ const CFG = {
   step: 6, overscan: 100,
   wobble: { line: 1.2, blob: 2, wave: 80 },
   pinch: { plateau: 4, rampMin: 12, rampMax: 60 },
-  rankZoom: { pinch: [0, 1, 3, 8], dot: [0, 1, 2.5, 6] },  // min zoom level per event rank
+  rankZoom: { pinch: [0, 1, 2, 5], dot: [0, 1, 1, 4] },  // min zoom level per event rank
   label: { size: 13, repeat: 700 },
 };
 const DATA_URL = /^[\w./-]+\.json$/.test(new URLSearchParams(location.search).get("data") || "")
@@ -287,12 +294,14 @@ function normalise(raw) {
       chapters: new Set(l.chapters || []) };
   }).filter(l => l.terms.length);
 
-  const events = raw.events.map(e => ({ ...e, t: toT(e.date), countries: e.countries || [], leaders: e.leaders || [] }))
+  const events = raw.events.map(e => ({ ...e, t: toT(e.date), countries: e.countries || [], leaders: e.leaders || [], shifts: e.shifts || [] }))
     .sort((a, b) => a.t - b.t);
+  const eventById = new Map(events.map(e => [e.id, e]));
+  const switchCause = new Set(countries.flatMap(c => c.segs.filter(sg => sg.cause).map(sg => sg.cause + "|" + c.id)));
   const weight = new Map();
   for (const e of events) for (const id of [...e.countries, ...e.leaders]) weight.set(id, (weight.get(id) || 0) + (4 - e.rank));
 
-  return { raw, bands, bandIdx, regions, chapters, countries, byCountry, leaders, events, weight, fallbackBand,
+  return { raw, bands, bandIdx, regions, chapters, countries, byCountry, leaders, events, eventById, switchCause, weight, fallbackBand,
     byId: new Map([...countries, ...leaders].map(x => [x.id, x])) };
 }
 
@@ -614,7 +623,7 @@ function selectedLineIds() {
 const svg = d3.select("#svg");
 const root = svg.append("g");
 const gLens = root.append("g"), gSqueeze = root.append("g"), gBlobs = root.append("g"), gBandLabels = root.append("g");
-const gLinks = root.append("g"), gLines = root.append("g"), gMeet = root.append("g"), gDots = root.append("g");
+const gLinks = root.append("g"), gLines = root.append("g"), gMeet = root.append("g"), gDots = root.append("g"), gMarks = root.append("g");
 const gLabels = root.append("g"), gAxis = root.append("g").attr("class", "axis"), gHover = root.append("g");
 const tip = document.getElementById("tip");
 const measureCtx = document.createElement("canvas").getContext("2d");
@@ -853,6 +862,40 @@ function render(forceLabels = false) {
     .attr("x", d => d.x0 - 4).attr("width", d => d.x1 - d.x0 + 8)
     .attr("y", d => d.gy - ((d.n - 1) * d.sp) / 2 - 4).attr("height", d => (d.n - 1) * d.sp + 8)
     .attr("rx", 5).each(d => markers.push({ x: (d.x0 + d.x1) / 2, y: d.gy, r: Math.max(8, (d.x1 - d.x0) / 2 + 4), event: d.event, events: d.events }));
+  // "why" markers: every camp switch, and alignment events that don't move the line
+  const marks = [];
+  if (L.view === "countries") {
+    const onLine = (ln, t, x) => {
+      const q = (qByLine.get(ln.id) || []).find(q => x >= q.xs && x <= q.xe);
+      return q ? evalPiece(q, x) + wobble(hash(ln.id), x, CFG.wobble.line) : null;
+    };
+    for (const ln of L.lines) ln.ent.segs.forEach((sg, j) => {
+      if (j === 0) return;
+      const x = X(sg.t);
+      if (x < -10 || x > pw + 10) return;
+      const y = onLine(ln, sg.t, x);
+      if (y == null) return;
+      marks.push({ key: `sw:${ln.id}:${j}`, kind: "switch", x, y, ln, seg: sg, prev: ln.ent.segs[j - 1],
+        event: sg.cause ? DATA.eventById.get(sg.cause) : null });
+    });
+    for (const e of DATA.events) for (const cid of e.shifts) {
+      if (DATA.switchCause.has(e.id + "|" + cid)) continue;
+      const i = L.idIndex.get(cid);
+      if (i == null || e.t < D0 || e.t > D1) continue;
+      const x = X(e.t);
+      if (x < -10 || x > pw + 10) continue;
+      const ln = L.lines[i], y = onLine(ln, e.t, x);
+      if (y == null) continue;
+      marks.push({ key: `al:${e.id}:${cid}`, kind: "align", x, y, ln, event: e });
+    }
+  }
+  const marked = new Set(marks.filter(m => m.event).map(m => m.event.id + ":" + m.ln.id));
+  const markActive = m => !F.active || F.lines.has(m.ln.id) || (m.event && F.events.has(m.event.id));
+  gMarks.selectAll("path").data(marks, d => d.key).join("path")
+    .attr("class", d => `${d.kind === "switch" ? "sw" : "al"} ${regionOf(d.ln)}${markActive(d) ? "" : " dim"}${d.event && F.events.has(d.event.id) ? " focus" : ""}`)
+    .attr("d", d => { const r = d.kind === "switch" ? 5 : 4.2; return `M${d.x},${d.y - r}L${d.x + r},${d.y}L${d.x},${d.y + r}L${d.x - r},${d.y}Z`; });
+  for (const m of marks) markers.push({ x: m.x, y: m.y, r: 8, mark: m, event: m.event });
+
   const dots = [], linksD = [];
   const skipped = new Set(dotsSkipped.map(e => e.id));
   const pinched = new Set(pinches.flatMap(p => p.events.map(e => e.id)));
@@ -870,26 +913,27 @@ function render(forceLabels = false) {
       if (!q) continue;
       const ln = L.lines[L.idIndex.get(id)];
       const yy = evalPiece(q, x) + wobble(hash(id), x, CFG.wobble.line);
+      if (marked.has(e.id + ":" + id)) { ys.push(yy); continue; }
       ys.push(yy);
       dots.push({ key: e.id + ":" + id, x, y: yy, e, ln });
       markers.push({ x, y: yy, r: 7, event: e });
     }
-    if (ys.length > 1 && e.rank <= 2) linksD.push({ key: e.id, e, x, y0: Math.min(...ys), y1: Math.max(...ys) });
+    if (ys.length > 1 && (e.rank === 1 || (e.rank === 2 && k >= 2.5) || lensHit)) linksD.push({ key: e.id, e, x, y0: Math.min(...ys), y1: Math.max(...ys) });
   }
   gLinks.selectAll("line").data(linksD, d => d.key).join("line").attr("class", d => `link${F.active && !F.events.has(d.e.id) ? " dim" : ""}`)
     .attr("x1", d => d.x).attr("x2", d => d.x).attr("y1", d => d.y0).attr("y2", d => d.y1)
     .attr("opacity", d => (F.active && !F.events.has(d.e.id) ? 0.08 : null));
   gDots.selectAll("circle").data(dots, d => d.key).join("circle")
-    .attr("class", d => `dot ${regionOf(d.ln)} r${d.e.rank}${F.active && !F.events.has(d.e.id) ? " dim" : ""}${F.events.has(d.e.id) ? " focus" : ""}`)
-    .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => (d.e.rank === 1 ? 4.2 : 3.2));
+    .attr("class", d => `dot ${regionOf(d.ln)} r${d.e.rank}${d.e.rank > 1 && k < 2.5 ? " quiet" : ""}${F.active && !F.events.has(d.e.id) ? " dim" : ""}${F.events.has(d.e.id) ? " focus" : ""}`)
+    .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => (d.e.rank === 1 ? 4.2 : k < 2.5 ? 2.3 : d.e.rank === 2 ? 3.2 : 2.6));
 
   axis(X, pw);
   geom = { X, Y, s, qByLine, markers, pw, L };
 
   const now = performance.now();
   clearTimeout(labelTimer);
-  if (forceLabels || now - lastLabels > 100) { lastLabels = now; labels(pieces, blobGeo, pinches, F); }
-  else labelTimer = setTimeout(() => { lastLabels = performance.now(); labels(pieces, blobGeo, pinches, F); }, 120);
+  if (forceLabels || now - lastLabels > 100) { lastLabels = now; labels(pieces, blobGeo, pinches, F, marks); }
+  else labelTimer = setTimeout(() => { lastLabels = performance.now(); labels(pieces, blobGeo, pinches, F, marks); }, 120);
   drawHover();
 }
 
@@ -929,8 +973,9 @@ function axis(X, pw) {
 }
 
 /* ------------------------------------------------------------------ labels */
-function labels(pieces, blobGeo, pinches, F) {
+function labels(pieces, blobGeo, pinches, F, marks = []) {
   const placed = [], out = [], pw = plotW();
+  for (const m of marks) placed.push({ x0: m.x - 6, x1: m.x + 6, y0: m.y - 6, y1: m.y + 6 });   // keep names off the markers
   const hits = (r) => placed.some(p => r.x0 < p.x1 && r.x1 > p.x0 && r.y0 < p.y1 && r.y1 > p.y0);
   const place = (r) => { if (r.x0 < 0 || r.x1 > pw || hits(r)) return false; placed.push(r); return true; };
 
@@ -1007,6 +1052,16 @@ function labels(pieces, blobGeo, pinches, F) {
       if (ok) break;
     }
   }
+  // captions for the "why" markers once there is room
+  if (state.t.k >= 1.5) for (const m of marks) {
+    if (!m.event) continue;
+    const txt = m.event.title, w = textWidth(txt, 12) + 6;
+    const dim = F.active && !F.lines.has(m.ln.id) && !F.events.has(m.event.id);
+    for (const [dx, dy] of [[7, -11], [7, 11], [-w - 7, -11], [-w - 7, 11]]) {
+      const x = m.x + dx, y = m.y + dy, r = { x0: x, x1: x + w, y0: y - 7, y1: y + 7 };
+      if (place(r)) { out.push({ key: "cap:" + m.key, cls: "lbl ev" + (dim ? " dim" : ""), x: x + 3, y, text: txt, anchor: "start" }); break; }
+    }
+  }
   gLabels.selectAll("text").data(out, d => d.key).join("text")
     .attr("class", d => d.cls).attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", d => d.anchor).text(d => d.text);
   gBandLabels.selectAll("*").remove();
@@ -1018,7 +1073,7 @@ function hitTest(mx, my) {
   let best = null;
   for (const m of geom.markers) {
     const d = Math.hypot(m.x - mx, m.y - my);
-    if (d <= m.r && (!best || d < best.d)) best = { d, event: m.event };
+    if (d <= m.r && (!best || d < best.d)) best = { d, event: m.event, mark: m.mark };
   }
   if (best) return best;
   const tol = matchMedia("(pointer: coarse)").matches ? 12 : 6;
@@ -1064,6 +1119,20 @@ function eventTip(e) {
   return [el("h3", {}, e.title), el("div", { class: "meta" }, fmtDate(e.date) + (who.length ? " · " + who.join(", ") : "")),
     el("p", {}, e.note), el("div", { class: "ref" }, e.refs.map(refLabel).join("; "))];
 }
+function markTip(m) {
+  const c = m.ln.ent, e = m.event;
+  if (m.kind === "align") {
+    return [el("h3", {}, `${c.name}: ${e.title}`),
+      el("div", { class: "meta" }, `${fmtDate(e.date)} · stays in: ${bandLabel(countryBandAt(c, e.t), e.t)}`),
+      el("p", {}, e.note), el("div", { class: "ref" }, e.refs.map(refLabel).join("; "))];
+  }
+  return [el("h3", {}, `${c.name}: ${bandLabel(m.prev.band, m.seg.t)} → ${bandLabel(m.seg.band, m.seg.t)}`),
+    el("div", { class: "meta" }, fmtDate(m.seg.from) + (m.seg.ref ? " · " + refLabel(m.seg.ref) : "")),
+    el("p", {}, m.seg.note),
+    e ? el("div", { class: "why" }, el("b", {}, `Key event: ${e.title} (${fmtDate(e.date)})`), el("p", {}, e.note),
+      el("div", { class: "ref" }, e.refs.map(refLabel).join("; ")))
+      : m.seg.general ? el("div", { class: "why ref" }, "General knowledge: the book doesn’t describe this switch.") : null];
+}
 function lineTip(id, t) {
   const x = DATA.byId.get(id);
   if (x.kind === "country") {
@@ -1095,11 +1164,12 @@ svg.on("pointermove", ev => {
   const mx = mx0 - CFG.margin.left;
   const h = hitTest(mx, my);
   const prev = state.hover + "|" + (state.hoverEvent && state.hoverEvent.id);
-  state.hover = h && h.line ? h.line : null;
+  state.hover = h && h.mark ? h.mark.ln.id : h && h.line ? h.line : null;
   state.hoverEvent = h && h.event ? h.event : null;
   state.hoverX = mx;
   svg.style("cursor", h ? "pointer" : null);
-  if (h && h.event) showTip(eventTip(h.event), mx, my);
+  if (h && h.mark) showTip(markTip(h.mark), mx, my);
+  else if (h && h.event) showTip(eventTip(h.event), mx, my);
   else if (h && h.line) showTip(lineTip(h.line, geom.X.invert(mx)), mx, my);
   else hideTip();
   if (prev !== state.hover + "|" + (state.hoverEvent && state.hoverEvent.id)) schedule(true); else drawHover();
@@ -1108,10 +1178,11 @@ svg.on("pointerleave", () => { state.hover = null; state.hoverEvent = null; hide
 svg.on("click", ev => {
   const [mx0, my] = d3.pointer(ev, svg.node());
   const h = hitTest(mx0 - CFG.margin.left, my);
-  if (h && h.line) { state.pinned.has(h.line) ? state.pinned.delete(h.line) : state.pinned.add(h.line); }
+  const lineId = h && (h.line || (h.mark && !h.event ? h.mark.ln.id : null));
+  if (lineId) { state.pinned.has(lineId) ? state.pinned.delete(lineId) : state.pinned.add(lineId); }
   else if (h && h.event) { state.focusEvent = state.focusEvent === h.event ? null : h.event; }
   else { state.pinned.clear(); state.focusEvent = null; }
-  if (h) showTip(h.event ? eventTip(h.event) : lineTip(h.line, geom.X.invert(mx0 - CFG.margin.left)), mx0 - CFG.margin.left, my);
+  if (h) showTip(h.mark ? markTip(h.mark) : h.event ? eventTip(h.event) : lineTip(h.line, geom.X.invert(mx0 - CFG.margin.left)), mx0 - CFG.margin.left, my);
   schedule(true); renderList();
 });
 
@@ -1123,6 +1194,7 @@ function zoomTo(t0, t1, dur = 650) {
   applyZoom(t, dur);
 }
 function applyZoom(t, dur) {
+  t = d3.zoomIdentity.translate(clamp(t.x, plotW() - baseW * t.k, 0), 0).scale(t.k);
   let ended = false;
   svg.transition().duration(dur).call(zoom.transform, t).on("end interrupt", () => (ended = true));
   setTimeout(() => { if (!ended) { svg.interrupt(); svg.call(zoom.transform, t); } }, dur + 250);
@@ -1287,7 +1359,7 @@ async function boot() {
   }
   state.L = currentLayout();
   new ResizeObserver(() => { resize(); schedule(true); }).observe(document.getElementById("chart"));
-  if (baseW > plotW()) svg.call(zoom.transform, d3.zoomIdentity.translate(-baseX(1938), 0));
+  if (baseW > plotW()) svg.call(zoom.transform, d3.zoomIdentity.translate(clamp(-baseX(1938), plotW() - baseW, 0), 0));
   render(true);
 }
 boot().catch(err => {

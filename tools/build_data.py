@@ -136,6 +136,9 @@ def check_extract(ctx, path):
             errs.append(f"{w}: unknown participants {bad}")
         if not e.get("countries") and not e.get("leaders"):
             errs.append(f"{w}: no participants")
+        shifts = e.get("shifts", [])
+        if not isinstance(shifts, list) or any(c not in e.get("countries", []) for c in shifts):
+            errs.append(f"{w}: shifts must list countries that are also in 'countries'")
         refs = e.get("refs") or []
         if not refs:
             errs.append(f"{w}: no refs")
@@ -185,7 +188,8 @@ def merge_events(exts, aliases=None):
                 close = abs(mk - ek) <= (6 if (mq or eq) else 1)
                 a = set(m["countries"]) | set(m["leaders"])
                 b = set(e["countries"]) | set(e["leaders"])
-                if close and m["kind"] == e["kind"] and a and b and len(a & b) / len(a | b) >= 0.6:
+                if (close and m["kind"] == e["kind"] and a and b and len(a & b) / len(a | b) >= 0.6
+                        and title_words(m["title"]) & title_words(e["title"])):
                     hit = m
                     break
                 same_month = mk == ek and mq == eq
@@ -202,6 +206,8 @@ def merge_events(exts, aliases=None):
             if month_key(hit["date"])[1] and not month_key(e["date"])[1]:
                 hit["date"] = e["date"]
             hit["countries"] = list(dict.fromkeys(hit["countries"] + e["countries"]))
+            if e.get("shifts"):
+                hit["shifts"] = list(dict.fromkeys(hit.get("shifts", []) + e["shifts"]))
             hit["leaders"] = list(dict.fromkeys(hit["leaders"] + e["leaders"]))
             hit["refs"] = hit["refs"] + [r for r in e["refs"] if r not in hit["refs"]]
     for m in merged:
@@ -376,6 +382,25 @@ def build(ctx):
         o[i], o[i + 1] = o[i + 1], o[i]
         if travel(o) < score:
             better.append(f"swap {o[i + 1]}<->{o[i]}: {travel(o)} < {score}")
+
+    # every camp switch names the event that explains it
+    ev_by_id = {e["id"]: e for e in events}
+    for c in countries:
+        for sg in c["segments"][1:]:
+            w = f"timeline {c['id']} {sg['from']}"
+            cause = sg.get("cause")
+            if not cause and sg.get("general"):
+                continue   # the book doesn't describe this switch; flagged as general knowledge
+            e = ev_by_id.get(cause) if cause else None
+            if e is None:
+                errs.append(f"{w}: " + (f"cause {cause} is not an event" if cause else "no cause event"))
+                continue
+            if c["id"] not in e["countries"]:
+                errs.append(f"{w}: cause {cause} does not involve {c['id']}")
+                continue
+            e.setdefault("shifts", [])
+            if c["id"] not in e["shifts"]:
+                e["shifts"].append(c["id"])
 
     mark_main_cast(roster, countries, leaders, events)
     chapters = []

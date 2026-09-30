@@ -28,10 +28,7 @@
      "from": "1902-05",
      "band": "west",
      "note": "Formally independent, yet under heavy American control and repeated US occupation.",
-     "ref": {
-      "ch": 13,
-      "p": 340
-     }
+     "general": true
     },
     {
      "from": "1959-01",
@@ -40,7 +37,8 @@
      "ref": {
       "ch": 11,
       "p": 298
-     }
+     },
+     "cause": "cuban-revolution-1959"
     },
     {
      "from": "1960-02",
@@ -49,7 +47,8 @@
      "ref": {
       "ch": 11,
       "p": 300
-     }
+     },
+     "cause": "mikoyan-cuba-visit-1960"
     },
     {
      "from": "1991-12",
@@ -58,7 +57,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -80,7 +80,8 @@
      "ref": {
       "ch": 13,
       "p": 355
-     }
+     },
+     "cause": "allende-elected-1970"
     },
     {
      "from": "1973-09",
@@ -89,7 +90,8 @@
      "ref": {
       "ch": 13,
       "p": 357
-     }
+     },
+     "cause": "chilean-coup-1973"
     }
    ]
   },
@@ -111,7 +113,8 @@
      "ref": {
       "ch": 18,
       "p": 498
-     }
+     },
+     "cause": "nicaraguan-revolution-1979"
     },
     {
      "from": "1990-02",
@@ -120,7 +123,8 @@
      "ref": {
       "ch": 21,
       "p": 570
-     }
+     },
+     "cause": "nicaraguan-election-1990"
     }
    ]
   },
@@ -142,7 +146,8 @@
      "ref": {
       "ch": 13,
       "p": 346
-     }
+     },
+     "cause": "guatemala-coup-1954"
     }
    ]
   },
@@ -164,7 +169,8 @@
      "ref": {
       "ch": 13,
       "p": 357
-     }
+     },
+     "cause": "argentina-coup-1976"
     }
    ]
   },
@@ -212,7 +218,8 @@
      "ref": {
       "ch": 1,
       "p": 36
-     }
+     },
+     "cause": "hitler-takes-power-1933"
     },
     {
      "from": "1945-05",
@@ -221,7 +228,8 @@
      "ref": {
       "ch": 2,
       "p": 58
-     }
+     },
+     "cause": "german-surrender-1945"
     },
     {
      "from": "1948-06",
@@ -230,7 +238,8 @@
      "ref": {
       "ch": 4,
       "p": 111
-     }
+     },
+     "cause": "german-currency-reform-1948"
     }
    ]
   },
@@ -252,7 +261,8 @@
      "ref": {
       "ch": 1,
       "p": 36
-     }
+     },
+     "cause": "mussolini-takes-power-1922"
     },
     {
      "from": "1943-09",
@@ -261,7 +271,8 @@
      "ref": {
       "ch": 2,
       "p": 49
-     }
+     },
+     "cause": "allied-invasion-of-italy-1943"
     }
    ]
   },
@@ -283,7 +294,8 @@
      "ref": {
       "ch": 4,
       "p": 118
-     }
+     },
+     "cause": "nato-founded-1949"
     }
    ]
   },
@@ -318,7 +330,8 @@
      "ref": {
       "ch": 1,
       "p": 27
-     }
+     },
+     "cause": "october-revolution-1917"
     },
     {
      "from": "1991-12",
@@ -327,7 +340,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -349,7 +363,8 @@
      "ref": {
       "ch": 1,
       "p": 33
-     }
+     },
+     "cause": "world-war-i-ends-1918"
     },
     {
      "from": "1945-01",
@@ -358,7 +373,8 @@
      "ref": {
       "ch": 3,
       "p": 83
-     }
+     },
+     "cause": "polish-provisional-government-1945"
     },
     {
      "from": "1989-08",
@@ -367,7 +383,8 @@
      "ref": {
       "ch": 22,
       "p": 588
-     }
+     },
+     "cause": "mazowiecki-government-1989"
     }
    ]
   },
@@ -389,7 +406,8 @@
      "ref": {
       "ch": 3,
       "p": 96
-     }
+     },
+     "cause": "red-army-liberates-czechoslovakia-1945"
     },
     {
      "from": "1948-02",
@@ -398,7 +416,8 @@
      "ref": {
       "ch": 3,
       "p": 95
-     }
+     },
+     "cause": "czechoslovak-coup-1948"
     },
     {
      "from": "1989-12",
@@ -407,7 +426,8 @@
      "ref": {
       "ch": 22,
       "p": 595
-     }
+     },
+     "cause": "velvet-revolution-1989"
     }
    ],
    "end": "1993-01"
@@ -430,7 +450,8 @@
      "ref": {
       "ch": 1,
       "p": 25
-     }
+     },
+     "cause": "world-war-i-ends-1918"
     },
     {
      "from": "1941-06",
@@ -439,7 +460,8 @@
      "ref": {
       "ch": 2,
       "p": 45
-     }
+     },
+     "cause": "operation-barbarossa-1941"
     },
     {
      "from": "1945-02",
@@ -448,7 +470,8 @@
      "ref": {
       "ch": 3,
       "p": 85
-     }
+     },
+     "cause": "fall-of-budapest-1945"
     },
     {
      "from": "1989-10",
@@ -457,7 +480,8 @@
      "ref": {
       "ch": 22,
       "p": 594
-     }
+     },
+     "cause": "hungary-ends-communist-rule-1989"
     }
    ]
   },
@@ -493,7 +517,8 @@
      "ref": {
       "ch": 4,
       "p": 124
-     }
+     },
+     "cause": "tito-stalin-split-1948"
     }
    ],
    "end": "1991-06"
@@ -516,7 +541,8 @@
      "ref": {
       "ch": 2,
       "p": 45
-     }
+     },
+     "cause": "operation-barbarossa-1941"
     },
     {
      "from": "1944-08",
@@ -525,7 +551,8 @@
      "ref": {
       "ch": 3,
       "p": 81
-     }
+     },
+     "cause": "romania-switches-sides-1944"
     },
     {
      "from": "1968-08",
@@ -534,7 +561,8 @@
      "ref": {
       "ch": 22,
       "p": 597
-     }
+     },
+     "cause": "romania-condemns-czech-invasion-1968"
     },
     {
      "from": "1989-12",
@@ -543,7 +571,8 @@
      "ref": {
       "ch": 22,
       "p": 598
-     }
+     },
+     "cause": "romanian-revolution-1989"
     }
    ]
   },
@@ -565,7 +594,8 @@
      "ref": {
       "ch": 1,
       "p": 33
-     }
+     },
+     "cause": "world-war-i-ends-1918"
     },
     {
      "from": "1940-06",
@@ -574,7 +604,8 @@
      "ref": {
       "ch": 1,
       "p": 40
-     }
+     },
+     "cause": "soviet-occupation-of-baltics-1940"
     },
     {
      "from": "1991-08",
@@ -583,7 +614,8 @@
      "ref": {
       "ch": 22,
       "p": 613
-     }
+     },
+     "cause": "baltic-independence-1991"
     }
    ]
   },
@@ -605,7 +637,8 @@
      "ref": {
       "ch": 2,
       "p": 66
-     }
+     },
+     "cause": "pearl-harbor-1941"
     },
     {
      "from": "1949-10",
@@ -614,7 +647,8 @@
      "ref": {
       "ch": 5,
       "p": 143
-     }
+     },
+     "cause": "prc-founded-1949"
     },
     {
      "from": "1960-07",
@@ -623,7 +657,8 @@
      "ref": {
       "ch": 9,
       "p": 247
-     }
+     },
+     "cause": "sino-soviet-split-1960"
     }
    ]
   },
@@ -658,7 +693,8 @@
      "ref": {
       "ch": 2,
       "p": 47
-     }
+     },
+     "cause": "second-sino-japanese-war-1937"
     },
     {
      "from": "1945-09",
@@ -667,7 +703,8 @@
      "ref": {
       "ch": 5,
       "p": 135
-     }
+     },
+     "cause": "us-occupation-of-japan-1945"
     }
    ]
   },
@@ -689,7 +726,8 @@
      "ref": {
       "ch": 6,
       "p": 159
-     }
+     },
+     "cause": "japan-annexes-korea-1910"
     },
     {
      "from": "1945-09",
@@ -698,7 +736,8 @@
      "ref": {
       "ch": 6,
       "p": 163
-     }
+     },
+     "cause": "korea-division-1945"
     }
    ]
   },
@@ -720,7 +759,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -742,7 +782,8 @@
      "ref": {
       "ch": 16,
       "p": 423
-     }
+     },
+     "cause": "indian-independence-1947"
     }
    ]
   },
@@ -764,7 +805,8 @@
      "ref": {
       "ch": 16,
       "p": 426
-     }
+     },
+     "cause": "us-pakistan-mutual-defense-1954"
     }
    ]
   },
@@ -786,7 +828,8 @@
      "ref": {
       "ch": 5,
       "p": 147
-     }
+     },
+     "cause": "indonesian-independence-proclamation-1945"
     },
     {
      "from": "1965-10",
@@ -795,7 +838,8 @@
      "ref": {
       "ch": 12,
       "p": 329
-     }
+     },
+     "cause": "indonesia-coup-1965"
     }
    ]
   },
@@ -817,7 +861,8 @@
      "ref": {
       "ch": 5,
       "p": 149
-     }
+     },
+     "cause": "vietnam-declares-independence-1945"
     },
     {
      "from": "1950-01",
@@ -826,7 +871,8 @@
      "ref": {
       "ch": 5,
       "p": 150
-     }
+     },
+     "cause": "chinese-aid-viet-minh-1950"
     },
     {
      "from": "1991-11",
@@ -835,7 +881,8 @@
      "ref": {
       "ch": 21,
       "p": 563
-     }
+     },
+     "cause": "vietnam-china-normalization-1991"
     }
    ]
   },
@@ -867,7 +914,8 @@
     {
      "from": "1953-11",
      "band": "nonaligned",
-     "note": "Independent under its king, Sihanouk, who tries to keep the country out of the Indochina wars (general knowledge; not detailed in the book)."
+     "note": "Independent under its king, Sihanouk, who tries to keep the country out of the Indochina wars.",
+     "general": true
     },
     {
      "from": "1970-03",
@@ -876,7 +924,8 @@
      "ref": {
       "ch": 15,
       "p": 406
-     }
+     },
+     "cause": "sihanouk-ousted-1970"
     },
     {
      "from": "1975-04",
@@ -885,7 +934,8 @@
      "ref": {
       "ch": 18,
       "p": 480
-     }
+     },
+     "cause": "khmer-rouge-takeover-1975"
     },
     {
      "from": "1979-01",
@@ -894,7 +944,8 @@
      "ref": {
       "ch": 18,
       "p": 490
-     }
+     },
+     "cause": "vietnamese-invasion-of-cambodia-1978"
     },
     {
      "from": "1991-10",
@@ -903,12 +954,22 @@
      "ref": {
       "ch": 21,
       "p": 562
-     }
+     },
+     "cause": "cambodia-peace-settlement-1991"
     }
    ]
   },
   "af": {
    "segments": [
+    {
+     "from": "1955-11",
+     "band": "nonaligned",
+     "note": "A neutral monarchy that Khrushchev courts with aid during his tour of South Asia.",
+     "ref": {
+      "ch": 10,
+      "p": 281
+     }
+    },
     {
      "from": "1978-04",
      "band": "east",
@@ -916,7 +977,8 @@
      "ref": {
       "ch": 18,
       "p": 494
-     }
+     },
+     "cause": "saur-revolution-1978"
     },
     {
      "from": "1992-04",
@@ -925,7 +987,8 @@
      "ref": {
       "ch": 21,
       "p": 577
-     }
+     },
+     "cause": "fall-of-kabul-1992"
     },
     {
      "from": "2001-10",
@@ -934,7 +997,8 @@
      "ref": {
       "ch": 23,
       "p": 618
-     }
+     },
+     "cause": "us-war-afghanistan-2001"
     }
    ]
   },
@@ -956,7 +1020,8 @@
      "ref": {
       "ch": 17,
       "p": 453
-     }
+     },
+     "cause": "egyptian-revolution-1952"
     },
     {
      "from": "1967-06",
@@ -965,7 +1030,8 @@
      "ref": {
       "ch": 17,
       "p": 462
-     }
+     },
+     "cause": "soviet-rearmament-of-egypt-1967"
     },
     {
      "from": "1972-07",
@@ -974,7 +1040,8 @@
      "ref": {
       "ch": 17,
       "p": 463
-     }
+     },
+     "cause": "sadat-expels-soviet-advisers-1972"
     },
     {
      "from": "1974-01",
@@ -983,7 +1050,8 @@
      "ref": {
       "ch": 17,
       "p": 469
-     }
+     },
+     "cause": "sinai-disengagement-1974"
     }
    ]
   },
@@ -1005,7 +1073,8 @@
      "ref": {
       "ch": 17,
       "p": 457
-     }
+     },
+     "cause": "suez-crisis-1956"
     }
    ]
   },
@@ -1027,7 +1096,8 @@
      "ref": {
       "ch": 5,
       "p": 153
-     }
+     },
+     "cause": "anglo-soviet-invasion-of-iran-1941"
     },
     {
      "from": "1946-12",
@@ -1036,7 +1106,8 @@
      "ref": {
       "ch": 5,
       "p": 154
-     }
+     },
+     "cause": "iran-retakes-north-1946"
     },
     {
      "from": "1951-05",
@@ -1045,7 +1116,8 @@
      "ref": {
       "ch": 10,
       "p": 268
-     }
+     },
+     "cause": "iran-oil-nationalization-1951"
     },
     {
      "from": "1953-08",
@@ -1054,7 +1126,8 @@
      "ref": {
       "ch": 10,
       "p": 269
-     }
+     },
+     "cause": "iran-coup-1953"
     },
     {
      "from": "1979-02",
@@ -1063,7 +1136,8 @@
      "ref": {
       "ch": 18,
       "p": 493
-     }
+     },
+     "cause": "iranian-revolution-1979"
     }
    ]
   },
@@ -1085,7 +1159,8 @@
      "ref": {
       "ch": 17,
       "p": 455
-     }
+     },
+     "cause": "baghdad-pact-1955"
     },
     {
      "from": "1958-07",
@@ -1094,7 +1169,8 @@
      "ref": {
       "ch": 17,
       "p": 455
-     }
+     },
+     "cause": "iraqi-revolution-1958"
     },
     {
      "from": "1963-02",
@@ -1103,7 +1179,8 @@
      "ref": {
       "ch": 17,
       "p": 458
-     }
+     },
+     "cause": "iraq-baath-coup-1963"
     },
     {
      "from": "1972-04",
@@ -1112,7 +1189,8 @@
      "ref": {
       "ch": 17,
       "p": 469
-     }
+     },
+     "cause": "soviet-iraqi-treaty-1972"
     },
     {
      "from": "1980-09",
@@ -1121,7 +1199,8 @@
      "ref": {
       "ch": 21,
       "p": 565
-     }
+     },
+     "cause": "iran-iraq-war-1980"
     },
     {
      "from": "2003-04",
@@ -1130,7 +1209,8 @@
      "ref": {
       "ch": 23,
       "p": 618
-     }
+     },
+     "cause": "iraq-war-2003"
     }
    ]
   },
@@ -1152,7 +1232,8 @@
      "ref": {
       "ch": 17,
       "p": 450
-     }
+     },
+     "cause": "french-withdrawal-syria-1946"
     },
     {
      "from": "1966-02",
@@ -1161,7 +1242,8 @@
      "ref": {
       "ch": 17,
       "p": 459
-     }
+     },
+     "cause": "syria-coup-1966"
     },
     {
      "from": "1991-12",
@@ -1170,7 +1252,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -1192,7 +1275,8 @@
      "ref": {
       "ch": 10,
       "p": 277
-     }
+     },
+     "cause": "algerian-independence-1962"
     }
    ]
   },
@@ -1214,7 +1298,8 @@
      "ref": {
       "ch": 10,
       "p": 277
-     }
+     },
+     "cause": "ghana-independence-1957"
     },
     {
      "from": "1966-02",
@@ -1223,7 +1308,8 @@
      "ref": {
       "ch": 12,
       "p": 324
-     }
+     },
+     "cause": "ghana-coup-1966"
     }
    ]
   },
@@ -1245,7 +1331,8 @@
      "ref": {
       "ch": 10,
       "p": 282
-     }
+     },
+     "cause": "congo-independence-1960"
     },
     {
      "from": "1960-09",
@@ -1254,7 +1341,8 @@
      "ref": {
       "ch": 10,
       "p": 283
-     }
+     },
+     "cause": "mobutu-coup-1960"
     }
    ]
   },
@@ -1276,7 +1364,8 @@
      "ref": {
       "ch": 18,
       "p": 483
-     }
+     },
+     "cause": "cuban-intervention-in-angola-1975"
     },
     {
      "from": "1991-12",
@@ -1285,7 +1374,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -1307,7 +1397,8 @@
      "ref": {
       "ch": 18,
       "p": 488
-     }
+     },
+     "cause": "soviet-arms-to-ethiopia-1977"
     },
     {
      "from": "1991-12",
@@ -1316,7 +1407,8 @@
      "ref": {
       "ch": 22,
       "p": 614
-     }
+     },
+     "cause": "dissolution-of-soviet-union-1991"
     }
    ]
   },
@@ -1335,10 +1427,7 @@
      "from": "1910-05",
      "band": "west",
      "note": "A self-governing, white-ruled dominion inside the British empire; later a firm anti-Communist partner of the West.",
-     "ref": {
-      "ch": 6,
-      "p": 177
-     }
+     "general": true
     }
    ]
   }
@@ -1965,6 +2054,22 @@
     "dubcek",
     "indira",
     "lbj"
+   ]
+  },
+  "khrushchev-beijing-visit-1958": {
+   "countries": [
+    "su",
+    "cn"
+   ],
+   "leaders": [
+    "khrushchev",
+    "mao"
+   ],
+   "dropRefs": [
+    {
+     "ch": 17,
+     "p": 456
+    }
    ]
   }
  }
